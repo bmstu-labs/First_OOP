@@ -15,6 +15,8 @@ struct Dot {
     Dot();
 
     friend std::istream& operator >> (std::istream& stream, Dot& obj);
+
+    friend std::ostream& operator << (std::ostream& stream, Dot& obj);
 };
 
 

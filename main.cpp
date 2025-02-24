@@ -7,6 +7,7 @@ int main() {
 
     char cmd;
     std::cin >> cmd;
+    
     while (cmd != 'Q') {
         if (cmd == 'A') {
             std::string figure_type;

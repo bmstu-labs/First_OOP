@@ -89,6 +89,8 @@ void Triangle::display() const {
     for (auto it : this->coordinates) {
         std::cout << it << ' ';
     }
+
+    std::cout << std::endl;
 }
 
 void Triangle::display_with_perimeter() const {
@@ -100,10 +102,17 @@ std::istream& operator >> (std::istream& stream, Triangle& obj) {
     std::cout << "Enter triangle name: ";
     stream >> obj.name;
 
+    // for (int i = 0; i < 3; i++) {
+    //     Dot a;
+    //     std::cin >> a;
+    //     obj.coordinates.push_back(a);
+    // }
+
     Dot a, b, c;
-    stream >> a;
-    stream >> b;
-    stream >> c;
+    std::cin >> a >> b >> c;
+    obj.coordinates.push_back(a);
+    obj.coordinates.push_back(b);
+    obj.coordinates.push_back(c);
 
     return stream;
 }
