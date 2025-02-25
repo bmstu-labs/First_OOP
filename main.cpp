@@ -1,9 +1,11 @@
-#include "include/shapes.hpp"
+
 #include <vector>
 #include <iostream>
 
+#include "include/shapes.hpp"
+
 int main() {
-    std::vector<Shape*> shapes;
+    std::vector<Shape::Shape*> shapes;
 
     char cmd;
     std::cin >> cmd;
@@ -13,17 +15,12 @@ int main() {
             std::string figure_type;
             std::cin >> figure_type;
             if (figure_type == "Triangle") {
-                Triangle *shape = new Triangle();
+                Shape::Triangle *shape = new Shape::Triangle();
                 std::cin >> *shape;
                 shapes.push_back(shape);
-            }
-            // else if (figure_type == "Rectangle") {
-            //     Rectangle *shape = new Rectangle();
-            //     std::cin >> *shape;
-            //     shapes.push_back(shape);
-            // }
+            } 
             else if (figure_type == "Circle") {
-                Circle *shape = new Circle();
+                Shape::Circle *shape = new Shape::Circle();
                 std::cin >> *shape;
                 shapes.push_back(shape);
             }
