@@ -3,7 +3,10 @@
 Commands::Command::~Command() = default;
 
 void Commands::CreateCommand::execute(Context& ctx) {
-    // std::map<std::string, 
+    // std::map<std::string, Shape::Shape*> shapes_types = {
+    //     {"Triangle", Shape::Triangle*},
+
+    }
     // Need to choose figures to create; Typename??
     std::string figure_type;
     std::cin >> figure_type;
