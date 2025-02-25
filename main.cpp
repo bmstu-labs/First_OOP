@@ -19,10 +19,12 @@ int main() {
                 std::cin >> *shape;
                 shapes.push_back(shape);
             } 
-            else if (figure_type == "Circle") {
-                Shape::Circle *shape = new Shape::Circle();
-                std::cin >> *shape;
-                shapes.push_back(shape);
+            else {
+                if (figure_type == "Circle") {
+                    Shape::Circle *shape = new Shape::Circle();
+                    std::cin >> *shape;
+                    shapes.push_back(shape);
+                }
             }
         }
         if (cmd == 'B') {

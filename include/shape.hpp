@@ -21,6 +21,8 @@ namespace Shape {
             virtual void display() const = 0;
         
             virtual void display_with_perimeter() const = 0;
+
+            bool operator < (Shape&);
         
             virtual ~Shape();
         };

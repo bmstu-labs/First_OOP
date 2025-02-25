@@ -16,4 +16,8 @@ void Shape::Shape::display() const {
     std::cout << std::endl;
 }
 
+bool Shape::Shape::operator < (Shape& other) {
+    return this->get_perimeter() < other.get_perimeter();
+}
+
 Shape::Shape::~Shape() = default;
