@@ -1,6 +1,7 @@
 
 #include <vector>
 #include <iostream>
+#include <map>
 
 #include "include/shapes.hpp"
 #include "include/menu.hpp"

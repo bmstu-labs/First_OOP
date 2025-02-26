@@ -9,7 +9,17 @@
 
 struct Context {
     std::vector<Shape::Shape*>& shapes;
+
+    Context(std::vector<Shape::Shape*>&);
 };
+
+namespace Allocator {
+    Shape::Shape *create_circle();
+
+    Shape::Shape *create_rectangle();
+
+    Shape::Shape *create_triangle();
+}
 
 namespace Commands {
     class Command {

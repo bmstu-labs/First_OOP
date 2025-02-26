@@ -1,47 +1,86 @@
-#include "include/commands.hpp"
+#include "commands.hpp"
+
+// Context class
+
+Context::Context(std::vector<Shape::Shape*> &shapes_ref) : shapes(shapes_ref) {};
+
+// Memory allocators
+
+Shape::Shape *Allocator::create_circle() {
+    return new Shape::Circle();
+}
+
+Shape::Shape *Allocator::create_triangle() {
+    return new Shape::Triangle();
+}
+
+Shape::Shape *Allocator::create_rectangle() {
+    return new Shape::Rectangle();
+}
+
+// Commands
 
 Commands::Command::~Command() = default;
 
-void Commands::CreateCommand::execute(Context& ctx) {
-    // std::map<std::string, Shape::Shape*> shapes_types = {
-    //     {"Triangle", Shape::Triangle*},
+// Create command
 
-    }
-    // Need to choose figures to create; Typename??
+void Commands::CreateCommand::execute(Context& ctx) {
+    std::map<std::string, Shape::Shape *(*)()> creation_commands = {
+        {"Triangle", Allocator::create_triangle},
+        {"Circle", Allocator::create_circle},
+        {"Rectangle", Allocator::create_rectangle}
+    };
+
+    std::cout << "Enter figure type: ";
     std::string figure_type;
     std::cin >> figure_type;
-    if (figure_type == "Triangle") {
-        Shape::Triangle *shape = new Shape::Triangle();
-        std::cin >> *shape;
-        ctx.shapes.push_back(shape);
-    } 
-    if (figure_type == "Circle") {
-        Shape::Circle *shape = new Shape::Circle();
-        std::cin >> *shape;
-        ctx.shapes.push_back(shape);
-    }
-    if (figure_type == "Rectangle") {
-        Shape::Rectangle *shape = new Shape::Rectangle();
-        std::cin >> *shape;
-        ctx.shapes.push_back(shape);
-    }
+
+    Shape::Shape *shape = creation_commands[figure_type]();
+    shape->input();
+    ctx.shapes.push_back(shape);
 };
+
+std::string Commands::CreateCommand::description() const {
+    return "Create new shape";
+}
+
+// Sort command
 
 void Commands::SortCommand::execute(Context& ctx) {
     std::sort(ctx.shapes.begin(), ctx.shapes.end());
 }
 
+std::string Commands::SortCommand::description() const {
+    return "Sort figures by perimeter (asc)";
+}
+
+// Display command
+
 void Commands::DisplayCommand::execute(Context& ctx) {
-    for (auto it : ctx.shapes) {
-        it->display();
+    for (Shape::Shape *shape : ctx.shapes) {
+        if (shape != nullptr) {
+            shape->display();
+        }
     }
 }
 
-void Commands::DeleteWithPerimeterCommand::execute(Context& ctx) {
+std::string Commands::DisplayCommand::description() const {
+    return "Display shapes";
+}
+
+// Display with perimeter command
+
+void Commands::DisplayWithPerimeterCommand::execute(Context& ctx) {
     for (auto it : ctx.shapes) {
         it->display_with_perimeter();
     }
 }
+
+std::string Commands::DisplayWithPerimeterCommand::description() const {
+    return "Display with perimeter";
+}
+
+// Delete by number command
 
 void Commands::DeleteByNumber::execute(Context& ctx) {
     try {
@@ -55,6 +94,12 @@ void Commands::DeleteByNumber::execute(Context& ctx) {
         std::cout << "Something went wrong. Try again." << std::endl;
     }
 }
+
+std::string Commands::DeleteByNumber::description() const {
+    return "Delete by number";
+}
+
+// Delete by perimeter command
 
 void Commands::DeleteWithPerimeterCommand::execute(Context& ctx) {
     try {
@@ -75,6 +120,26 @@ void Commands::DeleteWithPerimeterCommand::execute(Context& ctx) {
     }
 }
 
+std::string Commands::DeleteWithPerimeterCommand::description() const {
+    return "Delete shapes with perimeter more than...";
+}
+
+// Get sum commandd
+
+void Commands::GetSumCommand::execute(Context& ctx) {
+    double sum = 0;
+    for (auto it : ctx.shapes) {
+        sum += it->get_perimeter();
+    }
+    std::cout << "Total sum: " << sum << std::endl;
+}
+
+std::string Commands::GetSumCommand::description() const {
+    return "Get sum of perimeter of all shapes";
+}
+
+// Quit command
+
 void Commands::QuitCommand::execute(Context& ctx) {
     for (Shape::Shape *shape : ctx.shapes) {
         delete shape;
@@ -82,3 +147,6 @@ void Commands::QuitCommand::execute(Context& ctx) {
     ctx.shapes.clear();
 }
 
+std::string Commands::QuitCommand::description() const {
+    return "Quit the program";
+}

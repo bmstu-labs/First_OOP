@@ -16,6 +16,8 @@ namespace Shape {
 
         void display_with_perimeter() const override;
 
-        friend std::istream& operator >> (std::istream& stream, Circle& obj);
+        void input() override;
+
+        // friend std::istream& operator >> (std::istream& stream, Circle& obj);
     };
 }

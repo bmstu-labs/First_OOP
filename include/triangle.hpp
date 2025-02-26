@@ -12,7 +12,9 @@ namespace Shape {
         void display() const override;
         
         void display_with_perimeter() const override;
+
+        void input() override;
             
-        friend std::istream& operator >> (std::istream&, Triangle&);
+        // friend std::istream& operator >> (std::istream&, Triangle&);
     };
 }

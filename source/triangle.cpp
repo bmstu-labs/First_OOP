@@ -28,28 +28,13 @@ void Shape::Triangle::display_with_perimeter() const {
     std::cout << "Perimeter: " << this->get_perimeter() << std::endl;
 }
 
-std::istream& Shape::operator >> (std::istream& stream, Triangle& obj) {
-    std::cout << "Enter triangle name: ";
-    stream >> obj.name;
+void Shape::Triangle::input() {
+    Shape::Shape::input();
 
-    
-    // Should throw an exception and then exit without saving 
-    // point in array
-    try {
-        Dot a, b, c;
-        std::cin >> a >> b >> c;
-        if (a.is_line(b, c)) {
-            std::cout << "It's a line or point. Try again." << std::endl;
-            std::cin >> a >> b >> c;
-        }
-    }
-    catch (std::input_exception) {
-        
-    }
-
-    obj.coordinates.push_back(a);
-    obj.coordinates.push_back(b);
-    obj.coordinates.push_back(c);
-
-    return stream;
+    std::cout << "Enter points' coordinates:" << std::endl;
+    Dot a, b, c;
+    std::cin >> a >> b >> c;
+    coordinates.push_back(a);
+    coordinates.push_back(b);
+    coordinates.push_back(c);
 }

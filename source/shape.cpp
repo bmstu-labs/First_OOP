@@ -16,8 +16,13 @@ void Shape::Shape::display() const {
     std::cout << std::endl;
 }
 
+void Shape::Shape::input() {
+    std::cout << "Enter name: ";
+    std::cin >> name;
+}
+
 bool Shape::Shape::operator < (Shape& other) {
-    return this->get_perimeter() < other.get_perimeter();
+    return get_perimeter() < other.get_perimeter();
 }
 
 Shape::Shape::~Shape() = default;

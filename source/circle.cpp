@@ -16,15 +16,14 @@ void Shape::Circle::display_with_perimeter() const {
     std::cout << "Perimeter: " << this->get_perimeter() << std::endl;
 }
 
-std::istream& Shape::operator >> (std::istream& stream, Circle& obj) {
-    std::cout << "Enter circle name: ";
-    stream >> obj.name;
+void Shape::Circle::input() {
+    Shape::Shape::input();
+
+    std::cout << "Enter center coordinates:" << std::endl;
+    Dot center;
+    std::cin >> center;
+    coordinates.push_back(center);
 
     std::cout << "Enter radius: ";
-    stream >> obj.radius;
-
-    Dot center;
-    stream >> center;
-
-    return stream;
+    std::cin >> radius;
 }
