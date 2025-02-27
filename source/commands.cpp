@@ -26,18 +26,23 @@ Commands::Command::~Command() = default;
 
 void Commands::CreateCommand::execute(Context& ctx) {
     std::map<std::string, Shape::Shape *(*)()> creation_commands = {
-        {"Triangle", Allocator::create_triangle},
-        {"Circle", Allocator::create_circle},
-        {"Rectangle", Allocator::create_rectangle}
+        {"Triangle",    Allocator::create_triangle},
+        {"Circle",      Allocator::create_circle},
+        {"Rectangle",   Allocator::create_rectangle}
     };
 
     std::cout << "Enter figure type: ";
     std::string figure_type;
     std::cin >> figure_type;
 
-    Shape::Shape *shape = creation_commands[figure_type]();
-    shape->input();
-    ctx.shapes.push_back(shape);
+    try {
+        Shape::Shape *shape = creation_commands.at(figure_type)();
+        shape->input();
+        ctx.shapes.push_back(shape);
+    }
+    catch (std::out_of_range) {
+        std::cout << "Unknown figure type entered. Try again." << std::endl;
+    };
 };
 
 std::string Commands::CreateCommand::description() const {

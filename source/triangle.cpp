@@ -31,10 +31,15 @@ void Shape::Triangle::display_with_perimeter() const {
 void Shape::Triangle::input() {
     Shape::Shape::input();
 
-    std::cout << "Enter points' coordinates:" << std::endl;
     Dot a, b, c;
     std::cin >> a >> b >> c;
-    coordinates.push_back(a);
-    coordinates.push_back(b);
-    coordinates.push_back(c);
+
+    if (a.is_line(b, c)) {
+        std::cout << "The points are line or the same. Try again." << std::endl;
+    }
+    else {
+        coordinates.push_back(a);
+        coordinates.push_back(b);
+        coordinates.push_back(c);
+    }    
 }
