@@ -1,4 +1,4 @@
-#include "circle.hpp"
+#include "shapes/circle.hpp"
 
 Shape::Circle::Circle() = default;
 
@@ -19,7 +19,6 @@ void Shape::Circle::display_with_perimeter() const {
 void Shape::Circle::input() {
     Shape::Shape::input();
 
-    std::cout << "Enter center coordinates:" << std::endl;
     Dot center;
     std::cin >> center;
     coordinates.push_back(center);

@@ -1,4 +1,4 @@
-#include "shape.hpp"
+#include "shapes/shape.hpp"
 
 Shape::Shape::Shape() = default;
 

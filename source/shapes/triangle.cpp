@@ -1,4 +1,4 @@
-#include "triangle.hpp"
+#include "shapes/triangle.hpp"
 
 Shape::Triangle::Triangle() = default;
 

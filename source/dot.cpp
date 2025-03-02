@@ -35,9 +35,13 @@ double Shape::Dot::get_length(Dot& other) const {
 std::istream& Shape::operator >> (std::istream& stream, Dot& dot) {
     std::cout << "Enter point coodinates." << std::endl;
     std::cout << "Enter x: ";
-    stream >> dot.x;
+    if (!(stream >> dot.x)) {
+        throw InputError("Incorrect input data format");
+    }
     std::cout << "Enter y: ";
-    stream >> dot.y;
+    if (!(stream >> dot.y)) {
+        throw InputError("Incorrect input data format");
+    }
 
     return stream;
 }

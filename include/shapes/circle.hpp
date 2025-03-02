@@ -1,20 +1,21 @@
 #pragma once
 
+#include <numbers>
+
 #include "shape.hpp"
 
 namespace Shape {
-    class Rectangle : public Shape {
+    class Circle : public Shape {
+        double radius;
     public:
-        Rectangle();
-        
+        Circle();
+
         double get_perimeter() const override;
-        
+
         void display() const override;
-        
+
         void display_with_perimeter() const override;
 
         void input() override;
-        
-        // friend std::istream& operator >> (std::istream&, Rectangle&);
     };
 }

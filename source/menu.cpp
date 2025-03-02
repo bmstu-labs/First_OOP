@@ -1,9 +1,13 @@
 #include "menu.hpp"
 
-Menu::Menu(std::vector<Shape::Shape*>& shapes) : ctx(shapes) {
+Menu::Menu(Context &data) : ctx(data) {
     commands["A"] = std::make_unique<Commands::CreateCommand>();
     commands["B"] = std::make_unique<Commands::DisplayCommand>();
+    commands["C"] = std::make_unique<Commands::DisplayWithPerimeterCommand>();
     commands["C"] = std::make_unique<Commands::DeleteByNumber>();
+    commands["E"] = std::make_unique<Commands::DeleteWithPerimeterCommand>();
+    commands["F"] = std::make_unique<Commands::GetSumCommand>();
+    commands["G"] = std::make_unique<Commands::SortCommand>();
     commands["Q"] = std::make_unique<Commands::QuitCommand>();
 }
 
@@ -17,7 +21,7 @@ void Menu::run() {
             it->second->execute(ctx);
         }
         else {
-            std::cout << "Wrong command. Try again." << std::endl;
+            std::cout << "Wrong command. Try again" << std::endl;
         }
 
         if (command == "Q") {
@@ -34,6 +38,7 @@ void Menu::display_options() const {
 
 std::string Menu::read_input() const {
     std::string command;
+    std::cout << "Enter command: ";
     std::cin >> command;
 
     return command;

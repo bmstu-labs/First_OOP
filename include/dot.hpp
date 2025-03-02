@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cmath>
 
+#include "exceptions/input_error.hpp"
+
 #define EPSILON .0001
 
 namespace Shape {

@@ -1,30 +1,12 @@
 #include "commands.hpp"
 
-// Context class
-
-Context::Context(std::vector<Shape::Shape*> &shapes_ref) : shapes(shapes_ref) {};
-
-// Memory allocators
-
-Shape::Shape *Allocator::create_circle() {
-    return new Shape::Circle();
-}
-
-Shape::Shape *Allocator::create_triangle() {
-    return new Shape::Triangle();
-}
-
-Shape::Shape *Allocator::create_rectangle() {
-    return new Shape::Rectangle();
-}
-
 // Commands
 
 Commands::Command::~Command() = default;
 
 // Create command
 
-void Commands::CreateCommand::execute(Context& ctx) {
+void Commands::CreateCommand::execute(Context &ctx) {
     std::map<std::string, Shape::Shape *(*)()> creation_commands = {
         {"Triangle",    Allocator::create_triangle},
         {"Circle",      Allocator::create_circle},
@@ -41,8 +23,15 @@ void Commands::CreateCommand::execute(Context& ctx) {
         ctx.shapes.push_back(shape);
     }
     catch (std::out_of_range) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << "Unknown figure type entered. Try again." << std::endl;
-    };
+    }
+    catch (InputError &error) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << error.what() << std::endl;
+    }
 };
 
 std::string Commands::CreateCommand::description() const {
@@ -91,12 +80,24 @@ void Commands::DeleteByNumber::execute(Context& ctx) {
     try {
         std::cout << "Write number: ";
         std::size_t index;
-        std::cin >> index;
+        if (!(std::cin >> index)) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            throw std::runtime_error("Invalid input. Enter a number");
+        }
+
+        if (index < 1 || index > ctx.shapes.size()) {
+            throw std::out_of_range("Number is too big");
+        }
 
         ctx.shapes.erase(ctx.shapes.begin() + index - 1);
+        std::cout << "Shape " << index << " has been deleted" << std::endl;
     }
-    catch (std::out_of_range) {
-        std::cout << "Something went wrong. Try again." << std::endl;
+    catch (const std::out_of_range& error) {
+        std::cout << error.what() << std::endl;
+    }
+    catch (const std::runtime_error& error) {
+        std::cout << error.what() << std::endl;
     }
 }
 
