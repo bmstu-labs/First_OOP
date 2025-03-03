@@ -1,9 +1,8 @@
 # Shapes management program
 
 ## Current todo list
-- Decompose project structure (decompose source files and include files into subdirs respectively) (50%)
-- Make menu initialization with commands config, not commands themselves
-- Do input exception handling (50%)
+- Add comments (menu.cpp and .hpp, dot.cpp andd .hpp)
+- Add input exception handling
 
 ## How to add custom command
 
