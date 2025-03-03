@@ -9,11 +9,13 @@
 
 class Menu {
     Context ctx;
-    std::map<std::string, std::unique_ptr<Commands::Command>> commands;
+    std::map<std::string, std::shared_ptr<Commands::Command>> commands;
 public:
     Menu(Context &);
 
     void run();
+
+    void add_command(const std::string&, const std::shared_ptr<Commands::Command>&);
 
     std::string read_input() const;
 

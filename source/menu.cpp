@@ -1,14 +1,14 @@
 #include "menu.hpp"
 
 Menu::Menu(Context &data) : ctx(data) {
-    commands["A"] = std::make_unique<Commands::CreateCommand>();
-    commands["B"] = std::make_unique<Commands::DisplayCommand>();
-    commands["C"] = std::make_unique<Commands::DisplayWithPerimeterCommand>();
-    commands["C"] = std::make_unique<Commands::DeleteByNumber>();
-    commands["E"] = std::make_unique<Commands::DeleteWithPerimeterCommand>();
-    commands["F"] = std::make_unique<Commands::GetSumCommand>();
-    commands["G"] = std::make_unique<Commands::SortCommand>();
-    commands["Q"] = std::make_unique<Commands::QuitCommand>();
+    commands["A"] = std::make_shared<Commands::CreateCommand>();
+    commands["B"] = std::make_shared<Commands::DisplayCommand>();
+    commands["C"] = std::make_shared<Commands::DisplayWithPerimeterCommand>();
+    commands["C"] = std::make_shared<Commands::DeleteByNumber>();
+    commands["E"] = std::make_shared<Commands::DeleteWithPerimeterCommand>();
+    commands["F"] = std::make_shared<Commands::GetSumCommand>();
+    commands["G"] = std::make_shared<Commands::SortCommand>();
+    commands["Q"] = std::make_shared<Commands::QuitCommand>();
 }
 
 void Menu::run() {
@@ -27,6 +27,16 @@ void Menu::run() {
         if (command == "Q") {
             break;
         }
+    }
+}
+
+void Menu::add_command(const std::string& key, const std::shared_ptr<Commands::Command>& command) {
+    try {
+        commands.at(key);
+        std::cout << "Command with such key already exists. Try again." << std::endl;
+    }
+    catch (std::out_of_range) {
+        commands[key] = command;
     }
 }
 
