@@ -6,11 +6,14 @@
 
 namespace Shape {
     class Circle : public Shape {
+        Dot center;
         double radius;
     public:
-        Circle();
+        Circle(const std::string, Dot, double);
 
         double get_perimeter() const override;
+        
+        // std::vector<Dot> get_points(); 
 
         void display() const override;
 

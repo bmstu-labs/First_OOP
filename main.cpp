@@ -8,16 +8,16 @@
 #include "context.hpp"
 #include "commands.hpp"
 
-// class UserCommand : public Commands::Command {
-// public:
-//     void execute(Context& ctx) override {
-//         std::cout << "Hello" << std::endl;
-//     }
+class UserCommand : public Commands::Command {
+public:
+    void execute(Context& ctx) override {
+        std::cout << "Hello" << std::endl;
+    }
 
-//     std::string description() const override {
-//         return "Print Hello";
-//     }
-// };
+    std::string description() const override {
+        return "Print Hello";
+    }
+};
 
 int main() {
     std::vector<Shape::Shape*> shapes;

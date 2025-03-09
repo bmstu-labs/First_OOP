@@ -4,8 +4,11 @@
 
 namespace Shape {
     class Triangle : public Shape {
+        Dot first_point;
+        Dot second_point;
+        Dot third_point;
     public:
-        Triangle();
+        Triangle(const std::string, Dot, Dot, Dot);
             
         double get_perimeter() const override;
         

@@ -1,6 +1,9 @@
 #include "shapes/rectangle.hpp"
 
-Shape::Rectangle::Rectangle() = default;
+Shape::Rectangle::Rectangle(const std::string name, Dot left, Dot right) : Shape::Shape(name) {
+    left_bottom_corner = left;
+    right_upper_corner = right;
+}
 
 // Add exceptions handling
 double Shape::Rectangle::get_perimeter() const {

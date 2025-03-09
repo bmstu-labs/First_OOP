@@ -5,9 +5,10 @@
 
 #include "exceptions/input_error.hpp"
 
-#define EPSILON .0001
-
 namespace Shape {
+
+    const double EPSILON = .0001;
+
     class Dot {
         double x;
         double y;

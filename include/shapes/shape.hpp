@@ -8,13 +8,18 @@
 
 namespace Shape {
     class Shape {
-        protected:
-            std::string name;
+        // should be private
+        protected: 
+            const std::string name;
             std::vector<Dot> coordinates;
         public:
-            Shape();
+            Shape(const std::string);
+
+            bool operator < (Shape&);
         
-            const std::string get_name() const;
+            virtual ~Shape() = default;
+        public:
+            std::string get_name() const;
         
             virtual double get_perimeter() const = 0;
         
@@ -23,9 +28,5 @@ namespace Shape {
             virtual void display_with_perimeter() const = 0;
 
             virtual void input() = 0;
-
-            bool operator < (Shape&);
-        
-            virtual ~Shape();
         };
 }

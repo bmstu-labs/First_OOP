@@ -1,25 +1,25 @@
 #include "shapes/shape.hpp"
 
-Shape::Shape::Shape() = default;
+Shape::Shape::Shape(const std::string shape_name) : name(shape_name) {}
 
-const std::string Shape::Shape::get_name() const {
-    return this->name;
+std::string Shape::Shape::get_name() const {
+    return name;
 }
 
 void Shape::Shape::display() const {
-    std::cout << this->name << std::endl;
+    std::cout << name << std::endl;
     std::cout << "Points coordinates: ";
-    for (auto it : this->coordinates) {
+    for (auto it : coordinates) {
         std::cout << it << ' ';
     }
 
     std::cout << std::endl;
 }
 
-void Shape::Shape::input() {
-    std::cout << "Enter name: ";
-    std::cin >> name;
-}
+// void Shape::Shape::input() {
+//     std::cout << "Enter name: ";
+//     std::cin >> name;
+// }
 
 bool Shape::Shape::operator < (Shape& other) {
     return get_perimeter() < other.get_perimeter();

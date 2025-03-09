@@ -32,6 +32,7 @@ void Menu::run() {
 
 void Menu::add_command(const std::string& key, const std::shared_ptr<Commands::Command>& command) {
     try {
+        // replace to find
         commands.at(key);
         std::cout << "Command with such key already exists. Try again." << std::endl;
     }

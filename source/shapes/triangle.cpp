@@ -1,6 +1,10 @@
 #include "shapes/triangle.hpp"
 
-Shape::Triangle::Triangle() = default;
+Shape::Triangle::Triangle(const std::string name, Dot point1, Dot point2, Dot point3) : Shape::Shape(name) {
+    first_point = point1;
+    second_point = point2;
+    third_point = point3;
+}
 
 double Shape::Triangle::get_perimeter() const {
     double perim = .0;

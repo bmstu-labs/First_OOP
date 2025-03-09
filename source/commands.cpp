@@ -113,10 +113,10 @@ void Commands::DeleteWithPerimeterCommand::execute(Context& ctx) {
         double perimeter;
         std::cin >> perimeter;
 
-        // !!! ACHTUNG. WATNING. REWRITE ELEMENT ERASING !!!
+        // !!! ACHTUNG. WATNING. REWRITE ELEMENT ERASING !!! REWRITE
         // it's okey to use ctx.shapes.size() because the compiler will call once automatically
         for (std::size_t index = 0; index < ctx.shapes.size(); index++) {
-            if (fabs(ctx.shapes.at(0)->get_perimeter() - perimeter) > EPSILON) {
+            if (fabs(ctx.shapes.at(index)->get_perimeter() - perimeter) > EPSILON) {
                 ctx.shapes.erase(ctx.shapes.begin() + index);
             }
         }
