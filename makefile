@@ -4,16 +4,23 @@ TARGET := prog.out
 
 SRC := \
 	main.cpp \
+    \
     source/commands.cpp \
+    \
+    source/factory/circle.cpp \
+    source/factory/rectangle.cpp \
+    source/factory/triangle.cpp \
+    \
     source/context.cpp \
     source/dot.cpp \
     source/menu.cpp \
-    source/shape_allocators.cpp \
+    \
     source/shapes/circle.cpp \
     source/shapes/rectangle.cpp \
     source/shapes/shape.cpp \
     source/shapes/triangle.cpp \
-    source/exceptions/input_error.cpp
+    \
+    source/exceptions.cpp
 
 OBJ := $(SRC:.cpp=.o)
 

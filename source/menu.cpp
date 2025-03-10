@@ -1,14 +1,25 @@
 #include "menu.hpp"
 
+Menu::Menu() : ctx() {
+    commands["A"] = std::make_shared<Commands::CreateCommand>("Create new shape");
+    commands["B"] = std::make_shared<Commands::DisplayCommand>("Display shapes");
+    commands["C"] = std::make_shared<Commands::DisplayWithPerimeterCommand>("Display with perim");
+    commands["D"] = std::make_shared<Commands::DeleteByNumber>("Delete by number");
+    commands["E"] = std::make_shared<Commands::DeleteWithPerimeterCommand>("Delete by perim");
+    commands["F"] = std::make_shared<Commands::GetSumCommand>("Print perim sum");
+    commands["G"] = std::make_shared<Commands::SortCommand>("Sort by perim (asc)");
+    commands["Q"] = std::make_shared<Commands::QuitCommand>("Quit the program");
+}
+
 Menu::Menu(Context &data) : ctx(data) {
-    commands["A"] = std::make_shared<Commands::CreateCommand>();
-    commands["B"] = std::make_shared<Commands::DisplayCommand>();
-    commands["C"] = std::make_shared<Commands::DisplayWithPerimeterCommand>();
-    commands["C"] = std::make_shared<Commands::DeleteByNumber>();
-    commands["E"] = std::make_shared<Commands::DeleteWithPerimeterCommand>();
-    commands["F"] = std::make_shared<Commands::GetSumCommand>();
-    commands["G"] = std::make_shared<Commands::SortCommand>();
-    commands["Q"] = std::make_shared<Commands::QuitCommand>();
+    commands["A"] = std::make_shared<Commands::CreateCommand>("Create new shape");
+    commands["B"] = std::make_shared<Commands::DisplayCommand>("Display shapes");
+    commands["C"] = std::make_shared<Commands::DisplayWithPerimeterCommand>("Display with perim");
+    commands["D"] = std::make_shared<Commands::DeleteByNumber>("Delete by number");
+    commands["E"] = std::make_shared<Commands::DeleteWithPerimeterCommand>("Delete by perim");
+    commands["F"] = std::make_shared<Commands::GetSumCommand>("Print perim sum");
+    commands["G"] = std::make_shared<Commands::SortCommand>("Sort by perim (asc)");
+    commands["Q"] = std::make_shared<Commands::QuitCommand>("Quit the program");
 }
 
 void Menu::run() {
@@ -21,7 +32,7 @@ void Menu::run() {
             it->second->execute(ctx);
         }
         else {
-            std::cout << "Wrong command. Try again" << std::endl;
+            std::cout << "Wrong command. Enter Q to quit the program safely." << std::endl;
         }
 
         if (command == "Q") {

@@ -4,9 +4,11 @@
 #include "shapes/shape.hpp"
 
 struct Context {
-    std::vector<Shape::Shape*>& shapes;
+    std::vector<Shapes::Shape*> shapes;
 
-    Context(std::vector<Shape::Shape*>&);
+    Context();
+
+    Context(std::vector<Shapes::Shape*>&);
 
     ~Context();
 };

@@ -10,6 +10,5 @@ public:
     
     const char *what() const noexcept override;
 };
-\
 
 // add triangle exception

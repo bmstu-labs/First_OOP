@@ -1,19 +1,29 @@
 #include "shapes/triangle.hpp"
 
-Shape::Triangle::Triangle(const std::string name, Dot point1, Dot point2, Dot point3) : Shape::Shape(name) {
+Shapes::Triangle::Triangle(const std::string name, Dot point1, Dot point2, Dot point3) : Shapes::Shape(name) {
     first_point = point1;
     second_point = point2;
     third_point = point3;
 }
 
-double Shape::Triangle::get_perimeter() const {
+std::vector<Shapes::Dot> Shapes::Triangle::get_points() const {
+    std::vector<Shapes::Dot> points;
+    
+    points.push_back(first_point);
+    points.push_back(second_point);
+    points.push_back(third_point);
+
+    return points;
+} 
+
+double Shapes::Triangle::get_perimeter() const {
     double perim = .0;
     try {
-        Dot first_point = coordinates.at(0);
-        Dot second_point = coordinates.at(1);
-        Dot third_point = coordinates.at(2);
+        Dot a = first_point;
+        Dot b = second_point;
+        Dot c = third_point;
 
-        perim = first_point.get_length(second_point) + first_point.get_length(third_point) + second_point.get_length(third_point);
+        perim = first_point.get_length(a) + first_point.get_length(b) + second_point.get_length(c);
     }
 
     catch(std::out_of_range) {
@@ -23,27 +33,27 @@ double Shape::Triangle::get_perimeter() const {
     return perim;
 }
 
-void Shape::Triangle::display() const {
+void Shapes::Triangle::display() const {
     Shape::display();
 }
 
-void Shape::Triangle::display_with_perimeter() const {
+void Shapes::Triangle::display_with_perimeter() const {
     Shape::display();
-    std::cout << "Perimeter: " << this->get_perimeter() << std::endl;
+    std::cout << "Perimeter: " << get_perimeter() << std::endl;
 }
 
-void Shape::Triangle::input() {
-    Shape::Shape::input();
+// void Shapes::Triangle::input() {
+//     Shapes::Shapes::input();
 
-    Dot a, b, c;
-    std::cin >> a >> b >> c;
+//     Dot a, b, c;
+//     std::cin >> a >> b >> c;
 
-    if (a.is_line(b, c)) {
-        std::cout << "The points are line or the same. Try again." << std::endl;
-    }
-    else {
-        coordinates.push_back(a);
-        coordinates.push_back(b);
-        coordinates.push_back(c);
-    }    
-}
+//     if (a.is_line(b, c)) {
+//         std::cout << "The points are line or the same. Try again." << std::endl;
+//     }
+//     else {
+//         coordinates.push_back(a);
+//         coordinates.push_back(b);
+//         coordinates.push_back(c);
+//     }    
+// }

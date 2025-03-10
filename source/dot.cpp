@@ -1,16 +1,20 @@
 #include "dot.hpp"
+#include "exceptions.hpp"
 
-Shape::Dot::Dot() = default;
+Shapes::Dot::Dot() : x(), y() {}
 
-double Shape::Dot::get_x() const {
+Shapes::Dot::Dot(double f, double s) : x(f), y(s) {}
+
+
+double Shapes::Dot::get_x() const {
     return this->x;
 }
 
-double Shape::Dot::get_y() const {
+double Shapes::Dot::get_y() const {
     return this->y;
 }
 
-bool Shape::Dot::is_line(Dot& obj1, Dot& obj2) const {
+bool Shapes::Dot::is_line(Dot& obj1, Dot& obj2) const {
 
     double alpha = this->get_length(obj1);
     double beta  = this->get_length(obj2);
@@ -28,11 +32,11 @@ bool Shape::Dot::is_line(Dot& obj1, Dot& obj2) const {
     return result;
 }
 
-double Shape::Dot::get_length(Dot& other) const {
+double Shapes::Dot::get_length(Dot& other) const {
     return sqrt(pow((this->x - other.x), 2) + pow((this->y - other.y), 2));
 }
 
-std::istream& Shape::operator >> (std::istream& stream, Dot& dot) {
+std::istream& Shapes::operator >> (std::istream& stream, Dot& dot) {
     std::cout << "Enter point coodinates." << std::endl;
     std::cout << "Enter x: ";
     if (!(stream >> dot.x)) {
@@ -46,7 +50,7 @@ std::istream& Shape::operator >> (std::istream& stream, Dot& dot) {
     return stream;
 }
 
-std::ostream& Shape::operator << (std::ostream& stream, Dot& dot) {
+std::ostream& Shapes::operator << (std::ostream& stream, Dot& dot) {
     stream << '(' << dot.x << "; " << dot.y << ')';
     return stream;
 }

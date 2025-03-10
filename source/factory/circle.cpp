@@ -1,17 +1,18 @@
 #include "factory/circle.hpp"
+#include "shapes/circle.hpp"
 
-Shape::Shape *CircleFactory::create() {
+Shapes::Shape *CircleFactory::create_shape() const {
     std::string name;
     std::cout << "Enter name: ";
     std::cin >> name;
 
     std::cout << "Enter center coords" << std::endl;
-    Shape::Dot center;
+    Shapes::Dot center;
     std::cin >> center;
 
     std::cout << "Enter radius: ";
     double radius;
     std::cin >> radius;
 
-    return new Shape::Circle(name, center, radius);
+    return new Shapes::Circle(name, center, radius);
 }

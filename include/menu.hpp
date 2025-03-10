@@ -11,6 +11,8 @@ class Menu {
     Context ctx;
     std::map<std::string, std::shared_ptr<Commands::Command>> commands;
 public:
+    Menu();
+
     Menu(Context &);
 
     void run();

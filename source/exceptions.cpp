@@ -1,4 +1,4 @@
-#include "exceptions/input_error.hpp"
+#include "exceptions.hpp"
 
 InputError::InputError(const std::string &msg) : message(msg) {}
 

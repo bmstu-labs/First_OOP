@@ -3,17 +3,16 @@
 #include <iostream>
 #include <cmath>
 
-#include "exceptions/input_error.hpp"
+const double EPSILON = .0001;
 
-namespace Shape {
-
-    const double EPSILON = .0001;
-
+namespace Shapes {
     class Dot {
         double x;
         double y;
     public:
         Dot();
+
+        Dot(double, double);
 
         double get_x() const;
 

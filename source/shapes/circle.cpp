@@ -1,33 +1,42 @@
 #include "shapes/circle.hpp"
 
-Shape::Circle::Circle(const std::string name, Dot center, double radius) : Shape::Shape(name) {
+Shapes::Circle::Circle(const std::string name, Dot center, double radius) : Shapes::Shape(name) {
     this->center = center;
     this->radius = radius;
 }
 
-double Shape::Circle::get_perimeter() const {
+double Shapes::Circle::get_perimeter() const {
     return 2 * std::numbers::pi * radius;
 }
+
+std::vector<Shapes::Dot> Shapes::Circle::get_points() const {
+    std::vector<Shapes::Dot> points;
+    points.push_back(center);
+
+    return points;
+} 
+
 // SOLID
 // Replace display and input functions in separated class
 // properties pATTERN & fabric
-void Shape::Circle::display() const {
+
+void Shapes::Circle::display() const {
     Shape::display();
     std::cout << "Radius: " << radius << std::endl;
 }
 
-void Shape::Circle::display_with_perimeter() const {
+void Shapes::Circle::display_with_perimeter() const {
     Shape::display();
-    std::cout << "Perimeter: " << this->get_perimeter() << std::endl;
+    std::cout << "Perimeter: " << get_perimeter() << std::endl;
 }
 
-void Shape::Circle::input() {
-    Shape::Shape::input();
+// void Shapes::Circle::input() {
+//     Shapes::Shapes::input();
 
-    Dot center;
-    std::cin >> center;
-    coordinates.push_back(center);
+//     Dot center;
+//     std::cin >> center;
+//     coordinates.push_back(center);
 
-    std::cout << "Enter radius: ";
-    std::cin >> radius;
-}
+//     std::cout << "Enter radius: ";
+//     std::cin >> radius;
+// }

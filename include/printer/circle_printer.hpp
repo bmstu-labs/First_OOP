@@ -4,8 +4,7 @@
 
 class CirclePrinter : public ShapePrinter {
 public:
-    void print(Shape::Shape& shape) const override {
-        ShapePrinter::print(shape);
-        // Should be input 
-    }
+    void print(const Shapes::Shape&) const override;
+
+    void print_with_perimeter(const Shapes::Shape&) const override;
 };

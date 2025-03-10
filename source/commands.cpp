@@ -1,16 +1,33 @@
 #include "commands.hpp"
+#include "exceptions.hpp"
+#include "factory/shapes.hpp"
 
 // Commands
 
+Commands::Command::Command(const std::string name) : message(name) {}
+
+Commands::Command::Command(const char *name) : message(name) {}
+
 Commands::Command::~Command() = default;
+
+std::string Commands::Command::description() const {
+    return message;
+}
 
 // Create command
 
+Commands::CreateCommand::CreateCommand(const char *name) : Commands::Command(name) {}
+
+
 void Commands::CreateCommand::execute(Context &ctx) {
-    std::map<std::string, Shape::Shape *(*)()> creation_commands = {
-        {"Triangle",    Allocator::create_triangle},
-        {"Circle",      Allocator::create_circle},
-        {"Rectangle",   Allocator::create_rectangle}
+    TriangleFactory triangle_factory;
+    CircleFactory circle_factory;
+    RectangleFactory rectangle_factory;
+
+    std::map<std::string, ShapeFactory *> creation_commands = {
+        {"Triangle",    &triangle_factory},
+        {"Circle",      &circle_factory},
+        {"Rectangle",   &rectangle_factory}
     };
 
     std::cout << "Enter figure type: ";
@@ -18,8 +35,7 @@ void Commands::CreateCommand::execute(Context &ctx) {
     std::cin >> figure_type;
 
     try {
-        Shape::Shape *shape = creation_commands.at(figure_type)();
-        shape->input();
+        Shapes::Shape *shape = creation_commands.at(figure_type)->create_shape();
         ctx.shapes.push_back(shape);
     }
     catch (std::out_of_range) {
@@ -32,37 +48,34 @@ void Commands::CreateCommand::execute(Context &ctx) {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cout << error.what() << std::endl;
     }
-};
-
-std::string Commands::CreateCommand::description() const {
-    return "Create new shape";
 }
 
 // Sort command
 
-void Commands::SortCommand::execute(Context& ctx) {
-    std::sort(ctx.shapes.begin(), ctx.shapes.end());
-}
+Commands::SortCommand::SortCommand(const char *name) : Commands::Command(name) {}
 
-std::string Commands::SortCommand::description() const {
-    return "Sort figures by perimeter (asc)";
+void Commands::SortCommand::execute(Context& ctx) {
+    std::sort(ctx.shapes.begin(), ctx.shapes.end(), 
+    [](const Shapes::Shape* a, const Shapes::Shape* b) {
+        return *a < *b;
+    });
 }
 
 // Display command
 
+Commands::DisplayCommand::DisplayCommand(const char *name) : Commands::Command(name) {}
+
 void Commands::DisplayCommand::execute(Context& ctx) {
-    for (Shape::Shape *shape : ctx.shapes) {
+    for (Shapes::Shape *shape : ctx.shapes) {
         if (shape != nullptr) {
             shape->display();
         }
     }
 }
 
-std::string Commands::DisplayCommand::description() const {
-    return "Display shapes";
-}
-
 // Display with perimeter command
+
+Commands::DisplayWithPerimeterCommand::DisplayWithPerimeterCommand(const char *name) : Commands::Command(name) {}
 
 void Commands::DisplayWithPerimeterCommand::execute(Context& ctx) {
     for (auto it : ctx.shapes) {
@@ -70,11 +83,9 @@ void Commands::DisplayWithPerimeterCommand::execute(Context& ctx) {
     }
 }
 
-std::string Commands::DisplayWithPerimeterCommand::description() const {
-    return "Display with perimeter";
-}
-
 // Delete by number command
+
+Commands::DeleteByNumber::DeleteByNumber(const char *name) : Commands::Command(name) {}
 
 void Commands::DeleteByNumber::execute(Context& ctx) {
     try {
@@ -101,36 +112,28 @@ void Commands::DeleteByNumber::execute(Context& ctx) {
     }
 }
 
-std::string Commands::DeleteByNumber::description() const {
-    return "Delete by number";
-}
-
 // Delete by perimeter command
 
-void Commands::DeleteWithPerimeterCommand::execute(Context& ctx) {
-    try {
-        std::cout << "Enter perimeter: ";
-        double perimeter;
-        std::cin >> perimeter;
+Commands::DeleteWithPerimeterCommand::DeleteWithPerimeterCommand(const char *name) : Commands::Command(name) {}
 
-        // !!! ACHTUNG. WATNING. REWRITE ELEMENT ERASING !!! REWRITE
-        // it's okey to use ctx.shapes.size() because the compiler will call once automatically
-        for (std::size_t index = 0; index < ctx.shapes.size(); index++) {
-            if (fabs(ctx.shapes.at(index)->get_perimeter() - perimeter) > EPSILON) {
-                ctx.shapes.erase(ctx.shapes.begin() + index);
-            }
+void Commands::DeleteWithPerimeterCommand::execute(Context& ctx) {
+    std::cout << "Enter perimeter: ";
+    double perimeter;
+    std::cin >> perimeter;
+
+    for (auto it = ctx.shapes.begin(); it != ctx.shapes.end();) {
+        if (((*it)->get_perimeter() - perimeter) > EPSILON) {
+            ctx.shapes.erase(it);
+        }
+        else {
+            it++;
         }
     }
-    catch (std::out_of_range) {
-        std::cout << "Something went wrong. Try again." << std::endl;
-    }
-}
-
-std::string Commands::DeleteWithPerimeterCommand::description() const {
-    return "Delete shapes with perimeter more than...";
 }
 
 // Get sum commandd
+
+Commands::GetSumCommand::GetSumCommand(const char *name) : Commands::Command(name) {}
 
 void Commands::GetSumCommand::execute(Context& ctx) {
     double sum = 0;
@@ -140,19 +143,13 @@ void Commands::GetSumCommand::execute(Context& ctx) {
     std::cout << "Total sum: " << sum << std::endl;
 }
 
-std::string Commands::GetSumCommand::description() const {
-    return "Get sum of perimeter of all shapes";
-}
-
 // Quit command
 
+Commands::QuitCommand::QuitCommand(const char *name) : Commands::Command(name) {}
+
 void Commands::QuitCommand::execute(Context& ctx) {
-    for (Shape::Shape *shape : ctx.shapes) {
+    for (Shapes::Shape *shape : ctx.shapes) {
         delete shape;
     }
     ctx.shapes.clear();
-}
-
-std::string Commands::QuitCommand::description() const {
-    return "Quit the program";
 }
