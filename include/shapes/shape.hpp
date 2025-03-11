@@ -5,7 +5,10 @@
 #include <iostream>
 
 #include "dot.hpp"
-#include "printer/printers.hpp"
+
+class Printer;
+
+class PrinterPerim;
 
 namespace Shapes {
     class Shape {

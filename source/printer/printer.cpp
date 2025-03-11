@@ -1,19 +1,15 @@
 #include "printer/printer.hpp"
 #include "shapes/shapes.hpp"
 
-void Printer::visit_default (const Shapes::Shape& shape) const {
-    std::cout << "Name: " << shape.get_name() << std::endl;
-}
-
-void Printer::visit(const Shapes::Circle& circle) const {
-    visit_default(circle);
+void Printer::visit_circle(const Shapes::Circle& circle) const {
+    std::cout << "Name: " << circle.get_name() << std::endl;
 
     std::cout << "Center: " << circle.get_points().at(0) << std::endl;
     std::cout << "Radius: " << circle.get_radius() << std::endl;
 }
 
-void Printer::visit(const Shapes::Triangle& triangle) const {
-    visit_default(triangle);
+void Printer::visit_triangle(const Shapes::Triangle& triangle) const {
+    std::cout << "Name: " << triangle.get_name() << std::endl;
 
     std::cout << "Points: ";
     for (Shapes::Dot point : triangle.get_points()) {
@@ -21,8 +17,8 @@ void Printer::visit(const Shapes::Triangle& triangle) const {
     }
 }
 
-void Printer::visit(const Shapes::Rectangle& rectangle) const {
-    visit_default(rectangle);
+void Printer::visit_rectangle(const Shapes::Rectangle& rectangle) const {
+    std::cout << "Name: " << rectangle.get_name() << std::endl;
 
     std::cout << "Points: ";
     for (Shapes::Dot point : rectangle.get_points()) {

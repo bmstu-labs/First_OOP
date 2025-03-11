@@ -1,4 +1,5 @@
 #include "shapes/shape.hpp"
+#include "printer/printers.hpp"
 
 #include <iostream>
 
@@ -8,18 +9,18 @@ std::string Shapes::Shape::get_name() const {
     return name;
 }
 
-void Shapes::Shape::display() const {
-    std::cout << "Name: " << name << std::endl;
+// void Shapes::Shape::display() const {
+//     std::cout << "Name: " << name << std::endl;
 
-    std::cout << "Points coordinates: ";
-    std::vector<Shapes::Dot> points = get_points();
+//     std::cout << "Points coordinates: ";
+//     std::vector<Shapes::Dot> points = get_points();
 
-    for (auto point : points) {
-        std::cout << point << ' ';
-    }
+//     for (auto point : points) {
+//         std::cout << point << ' ';
+//     }
 
-    std::cout << std::endl;
-}
+//     std::cout << std::endl;
+// }
 
 // void Shapes::Shapes::input() {
 //     std::cout << "Enter name: ";

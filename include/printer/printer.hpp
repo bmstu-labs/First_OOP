@@ -1,19 +1,13 @@
 #pragma once
 
-namespace Shapes {
-    class Shape;
-    class Circle;
-    class Rectangle;
-    class Triangle;
-}
+#include "printer/abstract_printer.hpp"
+#include "shapes/shapes.hpp"
 
-class Printer {
+class Printer : public BasePrinter {
 public:
-    void visit_default(const Shapes::Shape&) const;
+    void visit_circle(const Shapes::Circle&) const override;
 
-    void visit(const Shapes::Circle&) const;
+    void visit_triangle(const Shapes::Triangle&) const override;
 
-    void visit(const Shapes::Triangle&) const;
-
-    void visit(const Shapes::Rectangle&) const;
+    void visit_rectangle(const Shapes::Rectangle&) const override;
 };

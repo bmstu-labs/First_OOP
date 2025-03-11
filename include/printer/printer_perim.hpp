@@ -1,8 +1,13 @@
 #pragma once
 
+#include "printer/abstract_printer.hpp"
 #include "shapes/shapes.hpp"
 
-class PrinterPerim {
+class PrinterPerim : public BasePrinter {
 public:
-    void visit(const Shapes::Shape&) const;
+    void visit_circle(const Shapes::Circle&) const override;
+
+    void visit_triangle(const Shapes::Triangle&) const override;
+
+    void visit_rectangle(const Shapes::Rectangle&) const override;
 };

@@ -1,4 +1,5 @@
 #include "shapes/rectangle.hpp"
+#include "printer/printers.hpp"
 
 Shapes::Rectangle::Rectangle(const std::string name, Dot left, Dot right) : Shapes::Shape(name) {
     left_bottom_corner = left;
@@ -22,21 +23,21 @@ double Shapes::Rectangle::get_perimeter() const {
 }
 
 void Shapes::Rectangle::accept(Printer& printer) const {
-    printer.visit(*this);
+    printer.visit_rectangle(*this);
 }
 
 void Shapes::Rectangle::accept(PrinterPerim& printer) const {
-    printer.visit(*this);
+    printer.visit_rectangle(*this);
 }
 
-void Shapes::Rectangle::display() const {
-    Shapes::Shape::display();
-}
+// void Shapes::Rectangle::display() const {
+//     Shapes::Shape::display();
+// }
 
-void Shapes::Rectangle::display_with_perimeter() const {
-    Shape::display();
-    std::cout << "Perimeter: " << get_perimeter() << std::endl;
-}
+// void Shapes::Rectangle::display_with_perimeter() const {
+//     Shape::display();
+//     std::cout << "Perimeter: " << get_perimeter() << std::endl;
+// }
 
 // void Shapes::Rectangle::input() {
 //     Shapes::Shapes::input();

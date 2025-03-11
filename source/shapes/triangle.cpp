@@ -1,4 +1,5 @@
 #include "shapes/triangle.hpp"
+#include "printer/printers.hpp"
 
 Shapes::Triangle::Triangle(const std::string name, Dot point1, Dot point2, Dot point3) : Shapes::Shape(name) {
     first_point = point1;
@@ -34,21 +35,21 @@ double Shapes::Triangle::get_perimeter() const {
 }
 
 void Shapes::Triangle::accept(Printer& printer) const {
-    printer.visit(*this);
+    printer.visit_triangle(*this);
 }
 
 void Shapes::Triangle::accept(PrinterPerim& printer) const {
-    printer.visit(*this);
+    printer.visit_triangle(*this);
 }
 
-void Shapes::Triangle::display() const {
-    Shape::display();
-}
+// void Shapes::Triangle::display() const {
+//     Shape::display();
+// }
 
-void Shapes::Triangle::display_with_perimeter() const {
-    Shape::display();
-    std::cout << "Perimeter: " << get_perimeter() << std::endl;
-}
+// void Shapes::Triangle::display_with_perimeter() const {
+//     Shape::display();
+//     std::cout << "Perimeter: " << get_perimeter() << std::endl;
+// }
 
 // void Shapes::Triangle::input() {
 //     Shapes::Shapes::input();
