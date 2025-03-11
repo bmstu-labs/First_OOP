@@ -21,6 +21,14 @@ double Shapes::Rectangle::get_perimeter() const {
     return 2 * (fabs(a.get_x() - b.get_x()) + fabs(a.get_y() - b.get_y()));
 }
 
+void Shapes::Rectangle::accept(Printer& printer) const {
+    printer.visit(*this);
+}
+
+void Shapes::Rectangle::accept(PrinterPerim& printer) const {
+    printer.visit(*this);
+}
+
 void Shapes::Rectangle::display() const {
     Shapes::Shape::display();
 }

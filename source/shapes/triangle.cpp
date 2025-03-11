@@ -33,6 +33,14 @@ double Shapes::Triangle::get_perimeter() const {
     return perim;
 }
 
+void Shapes::Triangle::accept(Printer& printer) const {
+    printer.visit(*this);
+}
+
+void Shapes::Triangle::accept(PrinterPerim& printer) const {
+    printer.visit(*this);
+}
+
 void Shapes::Triangle::display() const {
     Shape::display();
 }

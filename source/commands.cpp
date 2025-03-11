@@ -1,6 +1,8 @@
 #include "commands.hpp"
 #include "exceptions.hpp"
 #include "factory/shapes.hpp"
+#include "printer/printers.hpp"
+
 
 // Commands
 
@@ -18,7 +20,6 @@ std::string Commands::Command::description() const {
 
 Commands::CreateCommand::CreateCommand(const char *name) : Commands::Command(name) {}
 
-
 void Commands::CreateCommand::execute(Context &ctx) {
     TriangleFactory triangle_factory;
     CircleFactory circle_factory;
@@ -35,13 +36,14 @@ void Commands::CreateCommand::execute(Context &ctx) {
     std::cin >> figure_type;
 
     try {
-        Shapes::Shape *shape = creation_commands.at(figure_type)->create_shape();
-        ctx.shapes.push_back(shape);
-    }
-    catch (std::out_of_range) {
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Unknown figure type entered. Try again." << std::endl;
+        auto it = creation_commands.find(figure_type);
+        if (it != creation_commands.end()) {
+            Shapes::Shape *shape = (*it).second->create_shape();
+            ctx.shapes.push_back(shape);
+        }
+        else {
+            std::cout << "Unknown shape type" << std::endl;
+        }
     }
     catch (InputError &error) {
         std::cin.clear();
@@ -66,9 +68,10 @@ void Commands::SortCommand::execute(Context& ctx) {
 Commands::DisplayCommand::DisplayCommand(const char *name) : Commands::Command(name) {}
 
 void Commands::DisplayCommand::execute(Context& ctx) {
+    Printer printer;
     for (Shapes::Shape *shape : ctx.shapes) {
         if (shape != nullptr) {
-            shape->display();
+            shape->accept(printer);
         }
     }
 }
@@ -78,8 +81,9 @@ void Commands::DisplayCommand::execute(Context& ctx) {
 Commands::DisplayWithPerimeterCommand::DisplayWithPerimeterCommand(const char *name) : Commands::Command(name) {}
 
 void Commands::DisplayWithPerimeterCommand::execute(Context& ctx) {
+    PrinterPerim printer;
     for (auto it : ctx.shapes) {
-        it->display_with_perimeter();
+        it->accept(printer);
     }
 }
 
@@ -88,27 +92,21 @@ void Commands::DisplayWithPerimeterCommand::execute(Context& ctx) {
 Commands::DeleteByNumber::DeleteByNumber(const char *name) : Commands::Command(name) {}
 
 void Commands::DeleteByNumber::execute(Context& ctx) {
-    try {
-        std::cout << "Write number: ";
-        std::size_t index;
-        if (!(std::cin >> index)) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            throw std::runtime_error("Invalid input. Enter a number");
-        }
-
-        if (index < 1 || index > ctx.shapes.size()) {
-            throw std::out_of_range("Number is too big");
-        }
-
-        ctx.shapes.erase(ctx.shapes.begin() + index - 1);
-        std::cout << "Shape " << index << " has been deleted" << std::endl;
+    std::cout << "Write number: ";
+    std::size_t index;
+    if (!(std::cin >> index)) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid number format. Enter again." << std::endl;
     }
-    catch (const std::out_of_range& error) {
-        std::cout << error.what() << std::endl;
-    }
-    catch (const std::runtime_error& error) {
-        std::cout << error.what() << std::endl;
+    else {
+        if (index <= 0 || index > ctx.shapes.size()) {
+            std::cout << "Number is too big" << std::endl;
+        } 
+        else {
+            ctx.shapes.erase(ctx.shapes.begin() + index - 1);
+            std::cout << "Shape " << index << " has been deleted" << std::endl;
+        }
     }
 }
 

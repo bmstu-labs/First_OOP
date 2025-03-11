@@ -15,11 +15,9 @@ namespace Shapes {
         double get_perimeter() const override;
 
         std::vector<Dot> get_points() const override;
-        
-        void display() const override;
-        
-        void display_with_perimeter() const override;
 
-        // void input() override;
+        void accept(Printer&) const override;
+
+        void accept(PrinterPerim&) const override;
     };
 }

@@ -20,7 +20,10 @@ SRC := \
     source/shapes/shape.cpp \
     source/shapes/triangle.cpp \
     \
-    source/exceptions.cpp
+    source/exceptions.cpp \
+    \
+    source/printer/printer_perim.cpp \
+    source/printer/printer.cpp
 
 OBJ := $(SRC:.cpp=.o)
 

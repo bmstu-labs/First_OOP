@@ -16,13 +16,13 @@ namespace Shapes {
         Circle(const std::string, Dot, double);
     public:
         double get_perimeter() const override;
+
+        double get_radius() const;
         
-        std::vector<Dot> get_points() const override; 
+        std::vector<Dot> get_points() const override;
+        
+        void accept(Printer&) const override;
 
-        void display() const override;
-
-        void display_with_perimeter() const override;
-
-        // void input() override;
+        void accept(PrinterPerim&) const override;
     };
 }

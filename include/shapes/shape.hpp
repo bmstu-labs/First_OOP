@@ -5,10 +5,10 @@
 #include <iostream>
 
 #include "dot.hpp"
+#include "printer/printers.hpp"
 
 namespace Shapes {
     class Shape {
-        // should be private
         private: 
             const std::string name;
         public:
@@ -23,11 +23,9 @@ namespace Shapes {
             virtual double get_perimeter() const = 0;
 
             virtual std::vector<Shapes::Dot> get_points() const = 0;
-        
-            virtual void display() const = 0;
-        
-            virtual void display_with_perimeter() const = 0;
+            
+            virtual void accept(Printer&) const = 0;
 
-            // virtual void input() = 0;
+            virtual void accept(PrinterPerim&) const = 0;
         };
 }

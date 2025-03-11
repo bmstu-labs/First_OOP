@@ -1,9 +1,14 @@
 # Shapes management program
 
 ## Current todo list
-- 
-- Make menu initialization with commands config, not commands themselves
-- Do input exception handling (50%)
+- Add painter classes (interface ShapePrinter and its children: CirclePrinter, TrianglePrinter, RectanglePrinter, etc.)
+- Add factory for shapes
+- Implement constructor with arguments for shapes
+- Implement output for shapes
+- Add comments (menu.cpp and .hpp, dot.cpp andd .hpp)
+- Add input exception handling
+
+First: realize interfaces, then shape by shape starting from circle
 
 ## How to add custom command
 
