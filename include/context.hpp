@@ -3,7 +3,8 @@
 #include <vector>
 #include "shapes/shape.hpp"
 
-struct Context {
+class Context {
+public:
     std::vector<Shapes::Shape*> shapes;
 
     Context();

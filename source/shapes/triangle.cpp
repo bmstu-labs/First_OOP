@@ -41,28 +41,3 @@ void Shapes::Triangle::accept(Printer& printer) const {
 void Shapes::Triangle::accept(PrinterPerim& printer) const {
     printer.visit_triangle(*this);
 }
-
-// void Shapes::Triangle::display() const {
-//     Shape::display();
-// }
-
-// void Shapes::Triangle::display_with_perimeter() const {
-//     Shape::display();
-//     std::cout << "Perimeter: " << get_perimeter() << std::endl;
-// }
-
-// void Shapes::Triangle::input() {
-//     Shapes::Shapes::input();
-
-//     Dot a, b, c;
-//     std::cin >> a >> b >> c;
-
-//     if (a.is_line(b, c)) {
-//         std::cout << "The points are line or the same. Try again." << std::endl;
-//     }
-//     else {
-//         coordinates.push_back(a);
-//         coordinates.push_back(b);
-//         coordinates.push_back(c);
-//     }    
-// }

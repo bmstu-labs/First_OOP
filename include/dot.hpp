@@ -3,9 +3,9 @@
 #include <iostream>
 #include <cmath>
 
-const double EPSILON = .0001;
-
 namespace Shapes {
+    const double EPSILON = .0001; // Accurancy
+
     class Dot {
         double x;
         double y;
@@ -13,7 +13,7 @@ namespace Shapes {
         Dot();
 
         Dot(double, double);
-
+    public:
         double get_x() const;
 
         double get_y() const;
@@ -21,7 +21,7 @@ namespace Shapes {
         double get_length(Dot&) const;
 
         bool is_line(Dot&, Dot&) const;
-
+    public:
         friend std::istream& operator >> (std::istream& stream, Dot& obj);
 
         friend std::ostream& operator << (std::ostream& stream, Dot& obj);

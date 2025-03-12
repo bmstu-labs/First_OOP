@@ -3,11 +3,7 @@
 #include "shapes/shapes.hpp"
 #include "context.hpp"
 
-#include <iostream>
 #include <string>
-#include <map>
-#include <algorithm>
-#include <limits>
 
 namespace Commands {
     class Command {
@@ -17,65 +13,66 @@ namespace Commands {
         
         Command(const char *);
 
-        virtual ~Command();
-
+        virtual ~Command() = default;
+    public:
         virtual void execute(Context&) = 0;
 
         std::string description() const;
     };
 
     class CreateCommand : public Command {
-            void execute(Context&) override;
-        public:
-            CreateCommand(const char *);
+    public:
+        CreateCommand(const char *);
+
+        void execute(Context&) override;
     };
 
     class SortCommand : public Command {
-            void execute(Context&) override;
-        // std::string description() const override;
-        public:
-            SortCommand(const char *);
+    public:
+        SortCommand(const char *);
+
+        void execute(Context&) override;
     };
 
     class DisplayCommand : public Command {
-            void execute(Context&) override;
-        // std::string description() const override;
-        public:
-            DisplayCommand(const char *);
+    public:
+        DisplayCommand(const char *);
+
+        void execute(Context&) override;
     };
 
     class DisplayWithPerimeterCommand : public Command {
-            void execute(Context&) override;
-        // std::string description() const override;
-        public:
-            DisplayWithPerimeterCommand(const char *);
+    public:
+        DisplayWithPerimeterCommand(const char *);
+
+        void execute(Context&) override;
     };
 
     class DeleteByNumber : public Command {
-            void execute(Context&) override;
-        // std::string description() const override;
-        public:
-            DeleteByNumber(const char *);
+    public:
+        DeleteByNumber(const char *);
+
+        void execute(Context&) override;
     };
 
     class DeleteWithPerimeterCommand : public Command {
-        void execute(Context&) override;
-        // std::string description() const override;
-        public:
+    public:
         DeleteWithPerimeterCommand(const char *);
+
+        void execute(Context&) override;
     };
 
     class GetSumCommand : public Command {
+    public:
+        GetSumCommand(const char *);
+
         void execute(Context&) override;
-        // std::string description() const override;
-        public:
-            GetSumCommand(const char *);
     };
 
     class QuitCommand : public Command {
+    public:
+        QuitCommand(const char *);
+
         void execute(Context&) override;
-        // std::string description() const override;
-        public:
-            QuitCommand(const char *);
     };
 }

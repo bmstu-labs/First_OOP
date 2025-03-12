@@ -2,7 +2,6 @@
 
 #include "factory/shape.hpp"
 
-
 class CircleFactory : public ShapeFactory {
 public:
     Shapes::Shape *create_shape() const override;

@@ -3,14 +3,16 @@
 #include "factory/shapes.hpp"
 #include "printer/printers.hpp"
 
+#include <map>
+#include <algorithm>
+#include <limits>
+#include <iostream>
 
 // Commands
 
 Commands::Command::Command(const std::string name) : message(name) {}
 
 Commands::Command::Command(const char *name) : message(name) {}
-
-Commands::Command::~Command() = default;
 
 std::string Commands::Command::description() const {
     return message;
@@ -21,6 +23,7 @@ std::string Commands::Command::description() const {
 Commands::CreateCommand::CreateCommand(const char *name) : Commands::Command(name) {}
 
 void Commands::CreateCommand::execute(Context &ctx) {
+    // Factories
     TriangleFactory triangle_factory;
     CircleFactory circle_factory;
     RectangleFactory rectangle_factory;
@@ -31,6 +34,7 @@ void Commands::CreateCommand::execute(Context &ctx) {
         {"Rectangle",   &rectangle_factory}
     };
 
+    // Shape type enter. The only 3 shapes are available by default
     std::cout << "Enter figure type: ";
     std::string figure_type;
     std::cin >> figure_type;
@@ -45,6 +49,8 @@ void Commands::CreateCommand::execute(Context &ctx) {
             std::cout << "Unknown shape type" << std::endl;
         }
     }
+
+    // Being catched if letters are in the input (only digits are needed)
     catch (InputError &error) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -120,7 +126,7 @@ void Commands::DeleteWithPerimeterCommand::execute(Context& ctx) {
     std::cin >> perimeter;
 
     for (auto it = ctx.shapes.begin(); it != ctx.shapes.end();) {
-        if (((*it)->get_perimeter() - perimeter) > EPSILON) {
+        if (((*it)->get_perimeter() - perimeter) > Shapes::EPSILON) {
             ctx.shapes.erase(it);
         }
         else {

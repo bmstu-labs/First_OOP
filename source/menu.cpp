@@ -42,18 +42,16 @@ void Menu::run() {
 }
 
 void Menu::add_command(const std::string& key, const std::shared_ptr<Commands::Command>& command) {
-    try {
-        // replace to find
-        commands.at(key);
-        std::cout << "Command with such key already exists. Try again." << std::endl;
-    }
-    catch (std::out_of_range) {
+    if (commands.find(key) == commands.end()) {
         commands[key] = command;
     }
+    else {
+        std::cout << "Command with such key already exists. Try again." << std::endl;
+    }   
 }
 
 void Menu::display_options() const {
-    for (auto &it : commands) {
+    for (const auto &it : commands) {
         std::cout << it.first << ". " << it.second->description() << std::endl;
     }
 }

@@ -24,8 +24,8 @@ bool Shapes::Dot::is_line(Dot& obj1, Dot& obj2) const {
     max_length = std::max(gamma, max_length);
     
     bool result = false;
-
-    if (fabs(2 * max_length - alpha - beta - gamma) < EPSILON) {
+    
+    if (fabs(2 * max_length - alpha - beta - gamma) < Shapes::EPSILON) {
         result = true;
     }
 
