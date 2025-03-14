@@ -34,10 +34,10 @@ double Shapes::Triangle::get_perimeter() const {
     return perim;
 }
 
-void Shapes::Triangle::accept(Printer& printer) const {
+void Shapes::Triangle::accept(const Printer& printer) const {
     printer.visit_triangle(*this);
 }
 
-void Shapes::Triangle::accept(PrinterPerim& printer) const {
+void Shapes::Triangle::accept(const PrinterPerim& printer) const {
     printer.visit_triangle(*this);
 }

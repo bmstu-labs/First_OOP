@@ -1,10 +1,7 @@
 #include "shapes/circle.hpp"
 #include "printer/printers.hpp"
 
-Shapes::Circle::Circle(const std::string name, Dot center, double radius) : Shapes::Shape(name) {
-    this->center = center;
-    this->radius = radius;
-}
+Shapes::Circle::Circle(const std::string name, Dot center, double radius) : Shapes::Shape(name), center(center), radius(radius) {}
 
 double Shapes::Circle::get_perimeter() const {
     return 2 * std::numbers::pi * radius;
@@ -21,10 +18,10 @@ std::vector<Shapes::Dot> Shapes::Circle::get_points() const {
     return points;
 } 
 
-void Shapes::Circle::accept(Printer& printer) const {
+void Shapes::Circle::accept(const Printer& printer) const {
     printer.visit_circle(*this);
 }
 
-void Shapes::Circle::accept(PrinterPerim& printer) const {
+void Shapes::Circle::accept(const PrinterPerim& printer) const {
     printer.visit_circle(*this);
 }

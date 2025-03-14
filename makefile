@@ -10,6 +10,7 @@ SRC := \
     source/factory/circle.cpp \
     source/factory/rectangle.cpp \
     source/factory/triangle.cpp \
+    source/factory/polyangle.cpp \
     \
     source/context.cpp \
     source/dot.cpp \
@@ -19,11 +20,12 @@ SRC := \
     source/shapes/rectangle.cpp \
     source/shapes/shape.cpp \
     source/shapes/triangle.cpp \
+    source/shapes/polyangle.cpp \
     \
     source/exceptions.cpp \
     \
     source/printer/printer_perim.cpp \
-    source/printer/printer.cpp
+    source/printer/printer.cpp \
 
 OBJ := $(SRC:.cpp=.o)
 

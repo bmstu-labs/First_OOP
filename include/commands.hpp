@@ -1,8 +1,6 @@
 #pragma once
 
-#include "shapes/shapes.hpp"
 #include "context.hpp"
-
 #include <string>
 
 namespace Commands {

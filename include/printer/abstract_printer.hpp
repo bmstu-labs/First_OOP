@@ -9,4 +9,6 @@ public:
     virtual void visit_triangle(const Shapes::Triangle&) const = 0;
 
     virtual void visit_rectangle(const Shapes::Rectangle&) const = 0;
+
+    virtual void visit_polyangle(const Shapes::Polyangle&) const = 0;
 };

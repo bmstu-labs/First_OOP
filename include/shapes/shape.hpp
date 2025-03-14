@@ -26,8 +26,8 @@ namespace Shapes {
 
             virtual std::vector<Shapes::Dot> get_points() const = 0;
             
-            virtual void accept(Printer&) const = 0;
+            virtual void accept(const Printer&) const = 0;
 
-            virtual void accept(PrinterPerim&) const = 0;
+            virtual void accept(const PrinterPerim&) const = 0;
         };
 }

@@ -25,3 +25,13 @@ void Printer::visit_rectangle(const Shapes::Rectangle& rectangle) const {
         std::cout << point << " ";
     }
 }
+
+void Printer::visit_polyangle(const Shapes::Polyangle& polyangle) const {
+    std::cout << "Name: " << polyangle.get_name() << std::endl;
+
+    std::cout << "Points: ";
+    for (Shapes::Dot point : polyangle.get_points()) {
+        std::cout << point << " ";
+    }
+    std::cout << std::endl;
+}

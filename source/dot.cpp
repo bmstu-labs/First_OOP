@@ -14,7 +14,16 @@ double Shapes::Dot::get_y() const {
     return this->y;
 }
 
-bool Shapes::Dot::is_line(Dot& obj1, Dot& obj2) const {
+bool Shapes::Dot::one_point_check(const Dot& obj1) const {
+    if (fabs(get_length(obj1)) < Shapes::EPSILON) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool Shapes::Dot::is_line(const Dot& obj1, const Dot& obj2) const {
 
     double alpha = this->get_length(obj1);
     double beta  = this->get_length(obj2);
@@ -32,7 +41,7 @@ bool Shapes::Dot::is_line(Dot& obj1, Dot& obj2) const {
     return result;
 }
 
-double Shapes::Dot::get_length(Dot& other) const {
+double Shapes::Dot::get_length(const Dot& other) const {
     return sqrt(pow((this->x - other.x), 2) + pow((this->y - other.y), 2));
 }
 

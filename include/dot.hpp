@@ -18,9 +18,11 @@ namespace Shapes {
 
         double get_y() const;
 
-        double get_length(Dot&) const;
+        double get_length(const Dot&) const;
+    public:
+        bool one_point_check(const Dot&) const;
 
-        bool is_line(Dot&, Dot&) const;
+        bool is_line(const Dot&, const Dot&) const;
     public:
         friend std::istream& operator >> (std::istream& stream, Dot& obj);
 

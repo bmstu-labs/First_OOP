@@ -2,6 +2,8 @@
 #include "exceptions.hpp"
 #include "factory/shapes.hpp"
 #include "printer/printers.hpp"
+#include "shapes/shapes.hpp"
+
 
 #include <map>
 #include <algorithm>
@@ -27,11 +29,13 @@ void Commands::CreateCommand::execute(Context &ctx) {
     TriangleFactory triangle_factory;
     CircleFactory circle_factory;
     RectangleFactory rectangle_factory;
+    PolyangleFactory polyangle_factory;
 
     std::map<std::string, ShapeFactory *> creation_commands = {
         {"Triangle",    &triangle_factory},
         {"Circle",      &circle_factory},
-        {"Rectangle",   &rectangle_factory}
+        {"Rectangle",   &rectangle_factory},
+        {"Polyangle",   &polyangle_factory}
     };
 
     // Shape type enter. The only 3 shapes are available by default
@@ -51,9 +55,15 @@ void Commands::CreateCommand::execute(Context &ctx) {
     }
 
     // Being catched if letters are in the input (only digits are needed)
-    catch (InputError &error) {
+    catch (InputError& error) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << error.what() << std::endl;
+    }
+    catch (ShapeIsLineError& error) {
+        std::cout << error.what() << std::endl;
+    }
+    catch (OnePointError& error) {
         std::cout << error.what() << std::endl;
     }
 }

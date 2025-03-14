@@ -1,14 +1,13 @@
 #pragma once
 
-#include "shape.hpp"
+#include <vector>
+#include "shapes/shape.hpp"
 
 namespace Shapes {
-    class Triangle : public Shape {
-        Dot first_point;
-        Dot second_point;
-        Dot third_point;
+    class Polyangle : public Shape {
+        std::vector<Dot> points;
     public:
-        Triangle(const std::string, Dot, Dot, Dot);
+        Polyangle(const std::string, std::vector<Dot>);
     public:
         double get_perimeter() const override;
 

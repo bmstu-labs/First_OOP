@@ -10,4 +10,6 @@ public:
     void visit_triangle(const Shapes::Triangle&) const override;
 
     void visit_rectangle(const Shapes::Rectangle&) const override;
+
+    void visit_polyangle(const Shapes::Polyangle&) const override;
 };

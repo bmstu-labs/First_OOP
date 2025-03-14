@@ -21,8 +21,8 @@ namespace Shapes {
         
         std::vector<Dot> get_points() const override;
         
-        void accept(Printer&) const override;
+        void accept(const Printer&) const override;
 
-        void accept(PrinterPerim&) const override;
+        void accept(const PrinterPerim&) const override;
     };
 }
