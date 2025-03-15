@@ -2,7 +2,7 @@
 
 #include "shapes/shapes.hpp"
 
-class BasePrinter {
+class IPrinter {
 public:
     virtual void visit_circle(const Shapes::Circle&) const = 0;
 
