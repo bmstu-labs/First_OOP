@@ -23,3 +23,9 @@ NegativeRadiusError::NegativeRadiusError(const std::string& msg) : message(msg) 
 const char *NegativeRadiusError::what() const noexcept {
     return message.c_str();
 }
+
+ConcavePolygon::ConcavePolygon(const std::string& msg) : message(msg) {}
+
+const char *ConcavePolygon::what() const noexcept {
+    return message.c_str();
+}

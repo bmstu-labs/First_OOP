@@ -34,3 +34,11 @@ public:
 
     const char *what() const noexcept override;
 };
+
+class ConcavePolygon : public std::exception {
+    std::string message;
+public:
+    ConcavePolygon(const std::string&);
+
+    const char *what() const noexcept override;
+};

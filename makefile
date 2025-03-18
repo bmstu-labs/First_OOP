@@ -13,7 +13,7 @@ SRC := \
     source/factory/polyangle.cpp \
     \
     source/context.cpp \
-    source/dot.cpp \
+    source/vector.cpp \
     source/menu.cpp \
     \
     source/shapes/circle.cpp \

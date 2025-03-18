@@ -69,6 +69,9 @@ void Commands::CreateCommand::execute(Context &ctx) {
     catch (NegativeRadiusError& error) {
         std::cout << error.what() << std::endl;
     }
+    catch (ConcavePolygon& error) {
+        std::cout << error.what() << std::endl;
+    }
 }
 
 // Sort command
