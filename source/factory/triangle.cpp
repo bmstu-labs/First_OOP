@@ -17,13 +17,11 @@ Shapes::Shape *TriangleFactory::create_shape() const {
     Shapes::Dot third_point;
     std::cin >> third_point;
 
-    if (first_point.one_point_check(second_point) || 
-        first_point.one_point_check(third_point)  ||
-        second_point.one_point_check(third_point)) {
+    if (Shapes::Dot::one_point_check(first_point, second_point) || Shapes::Dot::one_point_check(second_point, third_point)  || Shapes::Dot::one_point_check(first_point, third_point)) {
             throw OnePointError("Two or more points cannot have the same coordinates.");
         }
 
-    if (first_point.is_line(second_point, third_point)) {
+    if (Shapes::Dot::is_line(first_point, second_point, third_point)) {
         throw ShapeIsLineError("The points cannot be on the line");
     }
 

@@ -1,7 +1,7 @@
 #include "shapes/circle.hpp"
 #include "printer/printers.hpp"
 
-Shapes::Circle::Circle(const std::string name, Dot center, double radius) : Shapes::Shape(name), center(center), radius(radius) {}
+Shapes::Circle::Circle(const std::string& name, Dot center, double radius) : Shapes::Shape(name), center(center), radius(radius) {}
 
 double Shapes::Circle::get_perimeter() const {
     return 2 * std::numbers::pi * radius;

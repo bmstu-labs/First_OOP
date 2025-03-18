@@ -12,7 +12,7 @@
 
 // Commands
 
-Commands::Command::Command(const std::string name) : message(name) {}
+Commands::Command::Command(const std::string& name) : message(name) {}
 
 Commands::Command::Command(const char *name) : message(name) {}
 

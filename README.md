@@ -12,12 +12,43 @@ First: realize interfaces, then shape by shape starting from circle
 
 ## How to add custom command
 
+```
+#include "menu.hpp"
+#include "commands.hpp"
+#include "context.hpp"
+
+class MyCommad : public Commands::Command {
+public:
+    MyCommand(const char *description) : message(description) {}
+
+    void execute(Context& ctx) override {
+        // your code
+        // ...
+    }
+}
+
+// ...
+
+int main() {
+    Menu menu;
+    auto command = std::make_shared<MyCommand>();
+    menu.add_command("MyCommandKey", command);
+
+    menu.run();
+
+    // Code after quitting menu
+    // ...
+
+    return 0;
+}
+```
+
 1. Create class inherited from Commands::Command (in commands.hpp)
 2. Write code for both execute() and description() functions
 3. Create a string you want to use as a key for command
 4. Create object of your class
 ```
-std::shared_ptr<YourCommandClass> your_command = std::make_shared<YourCommandClass>();
+auto your_command = std::make_shared<YourCommandClass>();
 ```
 5. Add it to menu
 ```

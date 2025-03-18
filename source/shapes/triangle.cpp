@@ -1,7 +1,7 @@
 #include "shapes/triangle.hpp"
 #include "printer/printers.hpp"
 
-Shapes::Triangle::Triangle(const std::string name, Dot point1, Dot point2, Dot point3) : Shapes::Shape(name) {
+Shapes::Triangle::Triangle(const std::string& name, Dot point1, Dot point2, Dot point3) : Shapes::Shape(name) {
     first_point = point1;
     second_point = point2;
     third_point = point3;
@@ -24,7 +24,7 @@ double Shapes::Triangle::get_perimeter() const {
         Dot b = second_point;
         Dot c = third_point;
 
-        perim = first_point.get_length(a) + first_point.get_length(b) + second_point.get_length(c);
+        perim = Shapes::Dot::get_length(a, b) + Shapes::Dot::get_length(b, c) + Shapes::Dot::get_length(a, c);
     }
 
     catch(std::out_of_range) {

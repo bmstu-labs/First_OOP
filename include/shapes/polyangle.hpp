@@ -7,7 +7,7 @@ namespace Shapes {
     class Polyangle : public Shape {
         std::vector<Dot> points;
     public:
-        Polyangle(const std::string, std::vector<Dot>);
+        Polyangle(const std::string&, std::vector<Dot>);
     public:
         double get_perimeter() const override;
 

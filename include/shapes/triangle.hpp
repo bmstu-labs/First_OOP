@@ -8,7 +8,7 @@ namespace Shapes {
         Dot second_point;
         Dot third_point;
     public:
-        Triangle(const std::string, Dot, Dot, Dot);
+        Triangle(const std::string&, Dot, Dot, Dot);
     public:
         double get_perimeter() const override;
 

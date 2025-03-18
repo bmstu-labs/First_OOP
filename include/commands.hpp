@@ -7,7 +7,7 @@ namespace Commands {
     class Command {
         const std::string message;
     public:
-        Command(const std::string);
+        Command(const std::string&);
         
         Command(const char *);
 

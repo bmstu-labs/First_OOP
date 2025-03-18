@@ -14,7 +14,7 @@ Shapes::Shape *RectangleFactory::create_shape() const {
     Shapes::Dot right_upper_point;
     std::cin >> right_upper_point;
 
-    if (right_upper_point.one_point_check(left_bottom_point)) {
+    if (Shapes::Dot::one_point_check(right_upper_point, left_bottom_point)) {
         throw OnePointError("Two points cannot have the same coordinates");
     } 
     

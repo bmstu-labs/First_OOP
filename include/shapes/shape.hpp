@@ -12,7 +12,7 @@ namespace Shapes {
         private: 
             const std::string name;
         public:
-            Shape(const std::string);
+            Shape(const std::string&);
 
             bool operator < (const Shape&) const;
         

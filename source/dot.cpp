@@ -14,8 +14,8 @@ double Shapes::Dot::get_y() const {
     return this->y;
 }
 
-bool Shapes::Dot::one_point_check(const Dot& obj1) const {
-    if (fabs(get_length(obj1)) < Shapes::EPSILON) {
+bool Shapes::Dot::one_point_check(const Dot& obj1, const Dot& obj2) {
+    if (fabs(Shapes::Dot::get_length(obj1, obj2)) < Shapes::EPSILON) {
         return true;
     }
     else {
@@ -23,11 +23,11 @@ bool Shapes::Dot::one_point_check(const Dot& obj1) const {
     }
 }
 
-bool Shapes::Dot::is_line(const Dot& obj1, const Dot& obj2) const {
+bool Shapes::Dot::is_line(const Dot& obj1, const Dot& obj2, const Dot& obj3) {
 
-    double alpha = this->get_length(obj1);
-    double beta  = this->get_length(obj2);
-    double gamma = obj1.get_length(obj2);
+    double alpha = Shapes::Dot::get_length(obj1, obj2);
+    double beta  = Shapes::Dot::get_length(obj1, obj3);
+    double gamma = Shapes::Dot::get_length(obj2, obj3);
 
     double max_length = std::max(alpha, beta);
     max_length = std::max(gamma, max_length);
@@ -41,8 +41,8 @@ bool Shapes::Dot::is_line(const Dot& obj1, const Dot& obj2) const {
     return result;
 }
 
-double Shapes::Dot::get_length(const Dot& other) const {
-    return sqrt(pow((this->x - other.x), 2) + pow((this->y - other.y), 2));
+double Shapes::Dot::get_length(const Dot& obj1, const Dot& obj2) {
+    return sqrt(pow((obj1.get_x() - obj2.get_x()), 2) + pow((obj1.get_y() - obj2.get_y()), 2));
 }
 
 std::istream& Shapes::operator >> (std::istream& stream, Dot& dot) {

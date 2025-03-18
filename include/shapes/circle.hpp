@@ -13,7 +13,7 @@ namespace Shapes {
     public:
         Circle();
         
-        Circle(const std::string, Dot, double);
+        Circle(const std::string&, Dot, double);
     public:
         double get_perimeter() const override;
 

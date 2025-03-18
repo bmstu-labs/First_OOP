@@ -29,11 +29,11 @@ Shapes::Shape *PolyangleFactory::create_shape() const {
         const Shapes::Dot b = points.at(i + 1);
         const Shapes::Dot c = points.at(i + 2);
 
-        if (a.one_point_check(b) || a.one_point_check(c)) {
+        if (Shapes::Dot::one_point_check(a, b) || Shapes::Dot::one_point_check(a, c) || Shapes::Dot::one_point_check(b, c)) {
             throw OnePointError("Two ore more points cannot have the same coordinates.");
         }
 
-        ShapeIsLine = a.is_line(b, c);
+        ShapeIsLine = Shapes::Dot::is_line(a, b, c);
     }
 
     if (ShapeIsLine) {
