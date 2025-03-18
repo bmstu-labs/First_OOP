@@ -87,7 +87,7 @@ void Commands::DisplayCommand::execute(Context& ctx) {
     Printer printer;
     for (Shapes::Shape *shape : ctx.shapes) {
         if (shape != nullptr) {
-            shape->accept(printer);
+            shape->accept(&printer);
         }
     }
 }
@@ -99,7 +99,7 @@ Commands::DisplayWithPerimeterCommand::DisplayWithPerimeterCommand(const char *n
 void Commands::DisplayWithPerimeterCommand::execute(Context& ctx) {
     PrinterPerim printer;
     for (auto it : ctx.shapes) {
-        it->accept(printer);
+        it->accept(&printer);
     }
 }
 

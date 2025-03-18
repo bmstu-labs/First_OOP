@@ -5,9 +5,7 @@
 
 #include "dot.hpp"
 
-class Printer;
-
-class PrinterPerim;
+class IPrinter;
 
 namespace Shapes {
     class Shape {
@@ -26,8 +24,6 @@ namespace Shapes {
 
             virtual std::vector<Shapes::Dot> get_points() const = 0;
             
-            virtual void accept(const Printer&) const = 0;
-
-            virtual void accept(const PrinterPerim&) const = 0;
+            virtual void accept(const IPrinter *) const = 0;
         };
 }

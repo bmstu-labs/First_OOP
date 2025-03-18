@@ -3,7 +3,7 @@
 #include "printer/abstract_printer.hpp"
 #include "shapes/shapes.hpp"
 
-class PrinterPerim : public BasePrinter {
+class PrinterPerim : public IPrinter {
 public:
     void visit_circle(const Shapes::Circle&) const override;
 

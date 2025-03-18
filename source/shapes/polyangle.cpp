@@ -16,10 +16,6 @@ std::vector<Shapes::Dot> Shapes::Polyangle::get_points() const {
     return points;
 }
 
-void Shapes::Polyangle::accept(const Printer& printer) const {
-    printer.visit_polyangle(*this);
-}
-
-void Shapes::Polyangle::accept(const PrinterPerim& printer) const {
-    printer.visit_polyangle(*this);
+void Shapes::Polyangle::accept(const IPrinter *printer) const {
+    printer->visit_polyangle(*this);
 }
