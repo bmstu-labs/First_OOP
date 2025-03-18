@@ -11,5 +11,5 @@ public:
 
     void visit_rectangle(const Shapes::Rectangle&) const override;
 
-    void visit_polyangle(const Shapes::Polyangle&) const override;
+    void visit_polygon(const Shapes::Polygon&) const override;
 };

@@ -1,9 +1,9 @@
-#include "shapes/polyangle.hpp"
+#include "shapes/polygon.hpp"
 #include "printer/printers.hpp"
 #include "exceptions.hpp"
 #include <numbers>
 
-Shapes::Polyangle::Polyangle(const std::string& name, std::vector<Shapes::Vector> vectors) : Shape::Shape(name) {
+Shapes::Polygon::Polygon(const std::string& name, std::vector<Shapes::Vector> vectors) : Shape::Shape(name) {
     const std::size_t length = vectors.size();
 
     for (std::size_t i = 0; i < length; i++) {
@@ -27,7 +27,7 @@ Shapes::Polyangle::Polyangle(const std::string& name, std::vector<Shapes::Vector
     points = vectors;
 }
 
-double Shapes::Polyangle::get_perimeter() const {
+double Shapes::Polygon::get_perimeter() const {
     double perimeter = 0;
     for (size_t i = 0; i < points.size() - 1; i++) {
         perimeter += Shapes::Vector::get_length(points.at(0), points.at(i + 1));
@@ -36,10 +36,10 @@ double Shapes::Polyangle::get_perimeter() const {
     return perimeter;
 }
 
-std::vector<Shapes::Vector> Shapes::Polyangle::get_points() const {
+std::vector<Shapes::Vector> Shapes::Polygon::get_points() const {
     return points;
 }
 
-void Shapes::Polyangle::accept(const IPrinter *printer) const {
-    printer->visit_polyangle(*this);
+void Shapes::Polygon::accept(const IPrinter *printer) const {
+    printer->visit_polygon(*this);
 }

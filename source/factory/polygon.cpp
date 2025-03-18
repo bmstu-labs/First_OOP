@@ -1,9 +1,9 @@
-#include "factory/polyangle.hpp"
-#include "shapes/polyangle.hpp"
+#include "factory/polygon.hpp"
+#include "shapes/polygon.hpp"
 
 #include "exceptions.hpp"
 
-Shapes::Shape *PolyangleFactory::create_shape() const {
+Shapes::Shape *PolygonFactory::create_shape() const {
     std::string name;
     std::cout << "Enter name: ";
     std::cin >> name;
@@ -40,5 +40,5 @@ Shapes::Shape *PolyangleFactory::create_shape() const {
         throw ShapeIsLineError("The points cannot be on the line");
     }
 
-    return new Shapes::Polyangle(name, points);
+    return new Shapes::Polygon(name, points);
 }

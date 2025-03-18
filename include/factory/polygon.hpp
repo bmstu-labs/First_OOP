@@ -2,7 +2,7 @@
 
 #include "factory/shape.hpp"
 
-class PolyangleFactory : public ShapeFactory {
+class PolygonFactory : public ShapeFactory {
 public:
     Shapes::Shape *create_shape() const override;
 };

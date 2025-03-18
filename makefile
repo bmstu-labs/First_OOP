@@ -10,7 +10,7 @@ SRC := \
     source/factory/circle.cpp \
     source/factory/rectangle.cpp \
     source/factory/triangle.cpp \
-    source/factory/polyangle.cpp \
+    source/factory/polygon.cpp \
     \
     source/context.cpp \
     source/vector.cpp \
@@ -20,7 +20,7 @@ SRC := \
     source/shapes/rectangle.cpp \
     source/shapes/shape.cpp \
     source/shapes/triangle.cpp \
-    source/shapes/polyangle.cpp \
+    source/shapes/polygon.cpp \
     \
     source/exceptions.cpp \
     \

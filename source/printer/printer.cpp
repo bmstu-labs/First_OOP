@@ -26,11 +26,11 @@ void Printer::visit_rectangle(const Shapes::Rectangle& rectangle) const {
     }
 }
 
-void Printer::visit_polyangle(const Shapes::Polyangle& polyangle) const {
-    std::cout << "Name: " << polyangle.get_name() << std::endl;
+void Printer::visit_polygon(const Shapes::Polygon& polygon) const {
+    std::cout << "Name: " << polygon.get_name() << std::endl;
 
     std::cout << "Points: ";
-    for (Shapes::Vector point : polyangle.get_points()) {
+    for (Shapes::Vector point : polygon.get_points()) {
         std::cout << point << " ";
     }
     std::cout << std::endl;

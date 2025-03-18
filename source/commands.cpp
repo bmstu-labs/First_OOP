@@ -4,7 +4,6 @@
 #include "printer/printers.hpp"
 #include "shapes/shapes.hpp"
 
-
 #include <map>
 #include <algorithm>
 #include <limits>
@@ -26,16 +25,16 @@ Commands::CreateCommand::CreateCommand(const char *name) : Commands::Command(nam
 
 void Commands::CreateCommand::execute(Context &ctx) {
     // Factories
-    TriangleFactory triangle_factory;
-    CircleFactory circle_factory;
-    RectangleFactory rectangle_factory;
-    PolyangleFactory polyangle_factory;
+    TriangleFactory     triangle_factory;
+    CircleFactory       circle_factory;
+    RectangleFactory    rectangle_factory;
+    PolygonFactory      polygon_factory;
 
     std::map<std::string, ShapeFactory *> creation_commands = {
         {"Triangle",    &triangle_factory},
         {"Circle",      &circle_factory},
         {"Rectangle",   &rectangle_factory},
-        {"Polyangle",   &polyangle_factory}
+        {"Polygon",     &polygon_factory}
     };
 
     // Shape type enter. The only 3 shapes are available by default
