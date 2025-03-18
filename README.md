@@ -1,5 +1,10 @@
 # Shapes management program
 
+## How to compile
+1. Install make utility 
+2. In the command line write `make`
+3. Run `./prog.out`
+
 ## How to add custom command
 
 ```
