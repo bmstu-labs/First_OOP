@@ -17,3 +17,9 @@ OnePointError::OnePointError(const std::string& msg) : message(msg) {}
 const char *OnePointError::what() const noexcept {
     return message.c_str();
 }
+
+NegativeRadiusError::NegativeRadiusError(const std::string& msg) : message(msg) {}
+
+const char *NegativeRadiusError::what() const noexcept {
+    return message.c_str();
+}

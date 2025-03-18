@@ -66,6 +66,9 @@ void Commands::CreateCommand::execute(Context &ctx) {
     catch (OnePointError& error) {
         std::cout << error.what() << std::endl;
     }
+    catch (NegativeRadiusError& error) {
+        std::cout << error.what() << std::endl;
+    }
 }
 
 // Sort command

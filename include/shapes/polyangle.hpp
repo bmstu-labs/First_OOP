@@ -5,13 +5,13 @@
 
 namespace Shapes {
     class Polyangle : public Shape {
-        std::vector<Dot> points;
+        std::vector<Vector> points;
     public:
-        Polyangle(const std::string&, std::vector<Dot>);
+        Polyangle(const std::string&, std::vector<Vector>);
     public:
         double get_perimeter() const override;
 
-        std::vector<Dot> get_points() const override;
+        std::vector<Vector> get_points() const override;
 
         void accept(const IPrinter *) const override;
     };

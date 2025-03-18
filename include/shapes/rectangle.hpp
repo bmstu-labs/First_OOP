@@ -4,14 +4,14 @@
 
 namespace Shapes {
     class Rectangle : public Shape {
-        Dot left_bottom_corner;
-        Dot right_upper_corner;
+        Vector left_bottom_corner;
+        Vector right_upper_corner;
     public:
-        Rectangle(const std::string&, Dot, Dot);
+        Rectangle(const std::string&, Vector, Vector);
     public:
         double get_perimeter() const override;
 
-        std::vector<Dot> get_points() const override;
+        std::vector<Vector> get_points() const override;
 
         void accept(const IPrinter *) const override;
     };

@@ -11,15 +11,8 @@ Menu::Menu() : ctx() {
     commands["Q"] = std::make_shared<Commands::QuitCommand>("Quit the program");
 }
 
-Menu::Menu(Context &data) : ctx(data) {
-    commands["A"] = std::make_shared<Commands::CreateCommand>("Create new shape");
-    commands["B"] = std::make_shared<Commands::DisplayCommand>("Display shapes");
-    commands["C"] = std::make_shared<Commands::DisplayWithPerimeterCommand>("Display with perim");
-    commands["D"] = std::make_shared<Commands::DeleteByNumber>("Delete by number");
-    commands["E"] = std::make_shared<Commands::DeleteWithPerimeterCommand>("Delete by perim");
-    commands["F"] = std::make_shared<Commands::GetSumCommand>("Print perim sum");
-    commands["G"] = std::make_shared<Commands::SortCommand>("Sort by perim (asc)");
-    commands["Q"] = std::make_shared<Commands::QuitCommand>("Quit the program");
+Menu::Menu(Context &data) : Menu::Menu() {
+    ctx = data;
 }
 
 void Menu::run() {

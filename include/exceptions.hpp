@@ -26,3 +26,11 @@ public:
 
     const char *what() const noexcept override;
 };
+
+class NegativeRadiusError : public std::exception {
+    std::string message;
+public:
+    NegativeRadiusError(const std::string&);
+
+    const char *what() const noexcept override;
+};
