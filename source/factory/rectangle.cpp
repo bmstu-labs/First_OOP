@@ -8,13 +8,13 @@ Shapes::Shape *RectangleFactory::create_shape() const {
     std::cout << "Enter name: ";
     std::cin >> name;
 
-    Shapes::Dot left_bottom_point;
+    Shapes::Vector left_bottom_point;
     std::cin >> left_bottom_point;
 
-    Shapes::Dot right_upper_point;
+    Shapes::Vector right_upper_point;
     std::cin >> right_upper_point;
 
-    if (Shapes::Dot::one_point_check(right_upper_point, left_bottom_point)) {
+    if (Shapes::Vector::one_point_check(right_upper_point, left_bottom_point)) {
         throw OnePointError("Two points cannot have the same coordinates");
     } 
     

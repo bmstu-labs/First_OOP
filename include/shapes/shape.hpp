@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-#include "dot.hpp"
+#include "vector.hpp"
 
 class IPrinter;
 
@@ -22,7 +22,7 @@ namespace Shapes {
         
             virtual double get_perimeter() const = 0;
 
-            virtual std::vector<Shapes::Dot> get_points() const = 0;
+            virtual std::vector<Shapes::Vector> get_points() const = 0;
             
             virtual void accept(const IPrinter *) const = 0;
         };

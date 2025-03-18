@@ -8,11 +8,11 @@ Shapes::Shape *PolyangleFactory::create_shape() const {
     std::cout << "Enter name: ";
     std::cin >> name;
 
-    std::vector<Shapes::Dot> points;
+    std::vector<Shapes::Vector> points;
     std::cout << "Enter coords" << std::endl;
     char choose = 'y';
     while (choose == 'y' || choose == 'Y' || points.size() < 3) {
-        Shapes::Dot point; 
+        Shapes::Vector point; 
         std::cin >> point;
 
         points.push_back(point);
@@ -25,15 +25,15 @@ Shapes::Shape *PolyangleFactory::create_shape() const {
 
     bool ShapeIsLine = true;
     for (size_t i = 0; i < points.size() - 2; i++) {
-        const Shapes::Dot a = points.at(i);
-        const Shapes::Dot b = points.at(i + 1);
-        const Shapes::Dot c = points.at(i + 2);
+        const Shapes::Vector a = points.at(i);
+        const Shapes::Vector b = points.at(i + 1);
+        const Shapes::Vector c = points.at(i + 2);
 
-        if (Shapes::Dot::one_point_check(a, b) || Shapes::Dot::one_point_check(a, c) || Shapes::Dot::one_point_check(b, c)) {
+        if (Shapes::Vector::one_point_check(a, b) || Shapes::Vector::one_point_check(a, c) || Shapes::Vector::one_point_check(b, c)) {
             throw OnePointError("Two ore more points cannot have the same coordinates.");
         }
 
-        ShapeIsLine = Shapes::Dot::is_line(a, b, c);
+        ShapeIsLine = Shapes::Vector::is_line(a, b, c);
     }
 
     if (ShapeIsLine) {

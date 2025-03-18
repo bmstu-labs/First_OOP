@@ -4,15 +4,15 @@
 
 namespace Shapes {
     class Triangle : public Shape {
-        Dot first_point;
-        Dot second_point;
-        Dot third_point;
+        Vector first_point;
+        Vector second_point;
+        Vector third_point;
     public:
-        Triangle(const std::string&, Dot, Dot, Dot);
+        Triangle(const std::string&, Vector, Vector, Vector);
     public:
         double get_perimeter() const override;
 
-        std::vector<Dot> get_points() const override;
+        std::vector<Vector> get_points() const override;
 
         void accept(const IPrinter *) const override;
     };
