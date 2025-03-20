@@ -14,21 +14,17 @@ namespace Shapes {
 
         Vector(double, double);
     public:
-        double get_x() const;
+        double get_x() const noexcept;
 
-        double get_y() const;
+        double get_y() const noexcept;
 
-        double get_length() const;
+        double get_length() const noexcept;
     public:
         static double get_length(const Vector&, const Vector&);
 
-        static double cos(const Vector&, const Vector&);
+        static bool one_point_check(const Vector&, const Vector&) noexcept;
 
-        static double angle(const Vector&, const Vector&);
-
-        static bool one_point_check(const Vector&, const Vector&);
-
-        static bool is_line(const Vector&, const Vector&, const Vector&);
+        static bool is_line(const Vector&, const Vector&, const Vector&) noexcept;
     public:
         friend std::istream& operator >> (std::istream& stream, Vector& obj);
 

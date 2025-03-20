@@ -1,11 +1,10 @@
 #pragma once
 
-#include <map>
-#include <memory>
-#include <string>
-
 #include "commands.hpp"
 #include "context.hpp"
+
+#include <map>
+#include <string>
 
 class Menu {
     Context ctx;

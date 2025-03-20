@@ -2,9 +2,6 @@
 
 #include "shape.hpp"
 
-#include <numbers>
-#include <vector>
-
 namespace Shapes {
     class Circle : public Shape {
         Vector center;

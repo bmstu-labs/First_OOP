@@ -1,5 +1,7 @@
 #include "menu.hpp"
 
+#include <memory>
+
 Menu::Menu() : ctx() {
     commands["A"] = std::make_shared<Commands::CreateCommand>("Create new shape");
     commands["B"] = std::make_shared<Commands::DisplayCommand>("Display shapes");

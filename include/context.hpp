@@ -1,6 +1,5 @@
 #pragma once
 
-#include <vector>
 #include "shapes/shape.hpp"
 
 class Context {
