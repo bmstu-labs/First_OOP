@@ -20,7 +20,7 @@ namespace Shapes {
 
         double get_length() const noexcept;
     public:
-        static double get_length(const Vector&, const Vector&);
+        static double get_length(const Vector&, const Vector&) noexcept;
 
         static bool one_point_check(const Vector&, const Vector&) noexcept;
 
@@ -28,9 +28,9 @@ namespace Shapes {
     public:
         friend std::istream& operator >> (std::istream& stream, Vector& obj);
 
-        friend std::ostream& operator << (std::ostream& stream, Vector& obj);
+        friend std::ostream& operator << (std::ostream& stream, Vector& obj) noexcept;
     public:
-        Vector operator - (const Vector&) const;
+        Vector operator - (const Vector&) const noexcept;
 
         // Vector operator + (const Vector&) const;
     };

@@ -69,12 +69,12 @@ std::istream& Shapes::operator >> (std::istream& stream, Vector& Vector) {
     return stream;
 }
 
-std::ostream& Shapes::operator << (std::ostream& stream, Vector& Vector) {
+std::ostream& Shapes::operator << (std::ostream& stream, Vector& Vector) noexcept {
     stream << '(' << Vector.x << "; " << Vector.y << ')';
     return stream;
 }
 
-Shapes::Vector Shapes::Vector::operator - (const Shapes::Vector& obj) const {
+Shapes::Vector Shapes::Vector::operator - (const Shapes::Vector& obj) const noexcept {
     // Getting this vector's coordinates
     double ax = get_x();
     double ay = get_y();
