@@ -1,11 +1,11 @@
 # Shapes management program
-
-## How to compile
+ 
+## How to build :hammer:
 1. Install make utility 
 2. In the command line write `make`
 3. Run `./prog.out`
 
-## How does it work
+## How does it work :mag_right:
 Основные сущности:
 
 **Menu** - основной класс, который собирает другие сущности воедино. В конструкторе заполняет свои поля: таблицу с командами вида ключ-значение (строка и `shared_ptr` на объект класса Command и его наследников) и контекст (объект класса Context). 
@@ -23,7 +23,7 @@
 
 **ShapeFactory** - абстрактный класс для создания объекта указанного класса. Берет на себя ввод и проверку всех значений и создает объект через конструктор. Может кидать исключения при проверке корректности данных (см. exceptions.hpp).
 
-## How to add custom command
+## How to add custom command :pencil:
 
 ```
 // Include all required header files
