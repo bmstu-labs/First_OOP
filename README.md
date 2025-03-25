@@ -1,9 +1,13 @@
 # Shapes management program
- 
+## Requirements
+- Any C++ compiler
+- CMake (3.10+)
+
 ## How to build :hammer:
-1. Install make utility 
-2. In the command line write `make`
-3. Run `./prog.out`
+1. `mkdir build && cd build`
+2. `cmake ..`
+3. `make`
+4. Run executable with `./prog.out` or other name you have used
 
 ## How does it work :mag_right:
 Основные сущности:
