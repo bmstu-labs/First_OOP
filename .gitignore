@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+# Build things
+build/*
+!build/.gitkeep
+
 # Compiled Object files
 *.slo
 *.lo
