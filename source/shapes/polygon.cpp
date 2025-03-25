@@ -5,7 +5,8 @@
 
 Shapes::Polygon::Polygon(const std::string& name, std::vector<Shapes::Vector> vectors) : Shape::Shape(name) {
     const std::size_t length = vectors.size();
-
+    
+    std::vector<double> cross_products;
     for (std::size_t i = 0; i < length; i++) {
         // Retrieving radius-vectors from set
         Shapes::Vector a = vectors.at(i % length);
@@ -13,15 +14,30 @@ Shapes::Polygon::Polygon(const std::string& name, std::vector<Shapes::Vector> ve
         Shapes::Vector c = vectors.at((i + 2) % length);
 
         // Compute vectors (shape's sides) from radius-vectors
-        Shapes::Vector ab = b - a;
-        Shapes::Vector ac = c - a; 
+        Shapes::Vector ba = a - b;
+        Shapes::Vector cb = c - b; 
+
+        std::cout << "a: " << a << std::endl << "b: " << b << std::endl << "c: " << c << std::endl;
+
+        std::cout << "ba: " << ba << std::endl;
+        std::cout << "cb: " << cb << std::endl;
 
         // Check angle between vectors (sides)
-        double cross_product = ab.get_x() * ac.get_y() - ab.get_y() * ac.get_x();
-        std::cout << "Cross product: " << cross_product << std::endl;
-        
-        if (cross_product - Shapes::EPSILON < 0) {
-            throw ConcavePolygon("The polygon cannot be concave");
+        double cross_product = ba.get_x() * cb.get_y() - ba.get_y() * cb.get_x();
+
+        if (fabs(cross_product) < Shapes::EPSILON) {
+            cross_product = 0;
+        }
+
+        cross_products.push_back(cross_product);
+    }
+    const std::size_t length_products = cross_products.size();
+    for (std::size_t i = 0; i < length_products; i++) {
+        double cross_product_a = cross_products.at(i);
+        double cross_product_b = cross_products.at((i + 1) % length_products);
+
+        if ((cross_product_a <= 0 && cross_product_b > 0) || (cross_product_a > 0 && cross_product_b <= 0)) {
+            throw ConcavePolygon("The polygon cannot be concave"); 
         }
     }
     points = vectors;

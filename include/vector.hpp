@@ -4,7 +4,7 @@
 #include <cmath>
 
 namespace Shapes {
-    const double EPSILON = .0001; // Accurancy
+    static const double EPSILON = .0001; // Accurancy
 
     class Vector {
         double x;
@@ -31,7 +31,5 @@ namespace Shapes {
         friend std::ostream& operator << (std::ostream& stream, Vector& obj) noexcept;
     public:
         Vector operator - (const Vector&) const noexcept;
-
-        // Vector operator + (const Vector&) const;
     };
 }
