@@ -1,7 +1,7 @@
 #include "shapes/rectangle.hpp"
 #include "printer/printers.hpp"
 
-Shapes::Rectangle::Rectangle(const std::string& name, Vector left, Vector right) : Shapes::Shape(name) {
+Shapes::Rectangle::Rectangle(const std::string &name, Vector left, Vector right) : Shapes::Shape(name) {
     left_bottom_corner = left;
     right_upper_corner = right;
 }

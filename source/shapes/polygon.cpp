@@ -3,7 +3,7 @@
 #include "exceptions.hpp"
 #include <numbers>
 
-Shapes::Polygon::Polygon(const std::string& name, std::vector<Shapes::Vector> vectors) : Shape::Shape(name) {
+Shapes::Polygon::Polygon(const std::string &name, std::vector<Shapes::Vector> vectors) : Shape::Shape(name) {
     const std::size_t length = vectors.size();
     
     std::vector<double> cross_products;

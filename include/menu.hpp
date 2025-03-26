@@ -13,7 +13,7 @@ class Menu {
 public:
     Menu();
 
-    Menu(Context &);
+    Menu(Context&);
 
     void run();
 

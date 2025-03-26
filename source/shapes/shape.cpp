@@ -1,7 +1,7 @@
 #include "shapes/shape.hpp"
 #include "printer/printers.hpp"
 
-Shapes::Shape::Shape(const std::string& shape_name) : name(shape_name) {}
+Shapes::Shape::Shape(const std::string &shape_name) : name(shape_name) {}
 
 std::string Shapes::Shape::get_name() const {
     return name;

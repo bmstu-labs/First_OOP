@@ -1,7 +1,7 @@
 #include "shapes/triangle.hpp"
 #include "printer/printers.hpp"
 
-Shapes::Triangle::Triangle(const std::string& name, Vector point1, Vector point2, Vector point3) : Shapes::Shape(name) {
+Shapes::Triangle::Triangle(const std::string &name, Vector point1, Vector point2, Vector point3) : Shapes::Shape(name) {
     first_point = point1;
     second_point = point2;
     third_point = point3;
